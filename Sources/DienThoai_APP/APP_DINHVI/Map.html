@@ -113,6 +113,9 @@
                 center: tohienthanh
             });
        
+			var geocoder = new google.maps.Geocoder();
+
+            loadDiem(map, geocoder);
         }
 
 		function loadDiem(map, geo)
