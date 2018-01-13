@@ -1,0 +1,27 @@
+D:\Learn\HCDH\HK III\LTHD\DoAn\SYSTEM_BARG\APP_DINHVI\obj\Debug\APP_DINHVI.csprojResolveAssemblyReference.cache
+D:\Learn\HCDH\HK III\LTHD\DoAn\SYSTEM_BARG\APP_DINHVI\bin\APP_DINHVI.dll.config
+D:\Learn\HCDH\HK III\LTHD\DoAn\SYSTEM_BARG\APP_DINHVI\bin\APP_DINHVI.dll
+D:\Learn\HCDH\HK III\LTHD\DoAn\SYSTEM_BARG\APP_DINHVI\bin\APP_DINHVI.pdb
+D:\Learn\HCDH\HK III\LTHD\DoAn\SYSTEM_BARG\APP_DINHVI\obj\Debug\APP_DINHVI.dll
+D:\Learn\HCDH\HK III\LTHD\DoAn\SYSTEM_BARG\APP_DINHVI\obj\Debug\APP_DINHVI.pdb
+C:\Users\TNAM\Desktop\SignalR_App\SYSTEM_BARG\APP_DINHVI\bin\APP_DINHVI.dll.config
+C:\Users\TNAM\Desktop\SignalR_App\SYSTEM_BARG\APP_DINHVI\bin\APP_DINHVI.dll
+C:\Users\TNAM\Desktop\SignalR_App\SYSTEM_BARG\APP_DINHVI\bin\APP_DINHVI.pdb
+C:\Users\TNAM\Desktop\SignalR_App\SYSTEM_BARG\APP_DINHVI\obj\Debug\APP_DINHVI.csprojResolveAssemblyReference.cache
+C:\Users\TNAM\Desktop\SignalR_App\SYSTEM_BARG\APP_DINHVI\obj\Debug\APP_DINHVI.csproj.CoreCompileInputs.cache
+C:\Users\TNAM\Desktop\SignalR_App\SYSTEM_BARG\APP_DINHVI\obj\Debug\APP_DINHVI.dll
+C:\Users\TNAM\Desktop\SignalR_App\SYSTEM_BARG\APP_DINHVI\obj\Debug\APP_DINHVI.pdb
+C:\Users\TNAM\Desktop\DienThoai_APP\APP_DINHVI\bin\APP_DINHVI.dll.config
+C:\Users\TNAM\Desktop\DienThoai_APP\APP_DINHVI\bin\APP_DINHVI.dll
+C:\Users\TNAM\Desktop\DienThoai_APP\APP_DINHVI\bin\APP_DINHVI.pdb
+C:\Users\TNAM\Desktop\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.csprojResolveAssemblyReference.cache
+C:\Users\TNAM\Desktop\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.csproj.CoreCompileInputs.cache
+C:\Users\TNAM\Desktop\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.dll
+C:\Users\TNAM\Desktop\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.pdb
+C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_DINHVI\bin\APP_DINHVI.dll.config
+C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_DINHVI\bin\APP_DINHVI.dll
+C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_DINHVI\bin\APP_DINHVI.pdb
+C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.csproj.CoreCompileInputs.cache
+C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.dll
+C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.pdb
+C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.csprojResolveAssemblyReference.cache
