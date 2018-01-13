@@ -163,6 +163,15 @@
             });
         }    
         
+		//load data search input
+        $('body').on('click', 'tbody#tb tr', function () {
+            $("tbody#tb tr").removeClass("background-active");
+            $(this).addClass("background-active");
+            var data = $(this).attr("data-address");
+            $("#address").val(data);
+        });
+
+        //geoo tren table
 		function geocoding(id) {
             var pt = points.filter(p => p.key === id);
 
