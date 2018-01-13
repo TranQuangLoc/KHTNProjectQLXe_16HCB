@@ -386,6 +386,16 @@
             return Value * Math.PI / 180;
         }
 
+		function UpdateToaDo(id, x, y, diachi)
+        {
+            var data = {
+                Lat: x,
+                Lng: y,
+                DiaChi: diachi
+            }
+
+            firebase.child("Diem/" + id).update(data);        
+        }
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo&callback=initMap">
