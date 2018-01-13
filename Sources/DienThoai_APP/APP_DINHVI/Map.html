@@ -163,6 +163,76 @@
             });
         }    
         
+		function geocoding(id) {
+            var pt = points.filter(p => p.key === id);
+
+            if (pt[0]) {
+                
+                //console.log(pt);
+                var point = pt[0];
+                var geocoder = point.geo;
+                var address = JSON.parse(point.item.OriginGeo).diachi;
+                var map = point.map;
+                idDiemCurrent = point.key;
+                
+                geocoder.geocode({ 'address': address },
+                    function (results, status) {
+                        if (status === 'OK') {
+                            if (markers.length > 0) return;
+                            map.setCenter(results[0].geometry.location);
+
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                position: results[0].geometry.location,
+                                draggable: true,
+                                animation: google.maps.Animation.DROP,
+                                icon: 'icon-people.png',
+                                point_id: id
+                            })
+                            markers.push(marker);
+
+                            var infowindow = new google.maps.InfoWindow({
+                                content: 'Tọa độ (' + Number(results[0].geometry.location.lat()).toFixed(3) + ', ' +
+                                Number(results[0].geometry.location.lng()).toFixed(3) + ')'
+                            });
+
+                            infowindow.open(map, marker);
+                            UpdateToaDo_Origin(id, results[0].geometry.location.lat(), results[0].geometry.location.lng(), address);
+
+                            LoadCacXe(point.item.LoaiXe_Ten).done(function () {
+                                UpdateKhoangCach(marker);
+                                ShowTop10Nearest(map);
+                            });
+
+                            google.maps.event.addListener(marker, 'drag', function (e) {
+
+                                infowindow.close();
+                                infowindow = new google.maps.InfoWindow({ content: 'Tọa độ (' + Number(e.latLng.lat()).toFixed(3) + ', ' + Number(e.latLng.lng()).toFixed(3) + ')' });
+
+                                infowindow.open(map, marker);
+                                removeMarkerShow();
+
+                            });
+
+                            google.maps.event.addListener(marker, 'dragend', function (e) {
+
+                                ReverserGeoCode(geocoder,map,this);
+                                
+                                LoadCacXe(point.loaixe_id).done(function () {
+                                    UpdateKhoangCach(marker);
+                                    ShowTop10Nearest(map);
+                                });
+                            });
+
+                        } else {
+                            alert('Geocode was not successful for the following reason: ' + status);
+                        }
+
+                    }
+                )
+            }
+        }
+
 		function geocodeAddress(geocoder, map) {
             var address = document.getElementById('address').value;
             geocoder.geocode({ 'address': address },
