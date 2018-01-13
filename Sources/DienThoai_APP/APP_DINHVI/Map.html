@@ -396,6 +396,24 @@
 
             firebase.child("Diem/" + id).update(data);        
         }
+		
+		function UpdateToaDo_Origin(id, x, y, diachi) {
+
+            var origin = {
+                lat: x,
+                lng: y,
+                diachi: diachi
+            }
+
+            var data = {
+                Lat: x,
+                Lng: y,
+                OriginGeo: JSON.stringify(origin)
+            }
+
+            firebase.child("Diem/" + id).update(data);
+        }
+		
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo&callback=initMap">
