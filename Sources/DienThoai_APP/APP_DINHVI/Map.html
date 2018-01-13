@@ -163,6 +163,60 @@
             });
         }    
         
+		function geocodeAddress(geocoder, map) {
+            var address = document.getElementById('address').value;
+            geocoder.geocode({ 'address': address },
+                function (results, status) {
+                    if (status === 'OK') {
+                        if (markers.length > 0) return;
+                        map.setCenter(results[0].geometry.location);
+
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location,
+                            draggable: true,
+                            animation: google.maps.Animation.DROP,
+                            icon: 'icon-people.png'
+                        })
+                        markers.push(marker);
+
+                        var infowindow = new google.maps.InfoWindow({
+                            content: 'Tọa độ (' + Number(results[0].geometry.location.lat()).toFixed(3) + ', ' +
+                            Number(results[0].geometry.location.lng()).toFixed(3) + ')'
+                        });
+
+                        infowindow.open(map, marker);
+                        //UpdateToaDo(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+
+                        //LoadCacXe().done(function () {
+                        //    UpdateKhoangCach(marker);
+                        //});
+
+                        google.maps.event.addListener(marker, 'drag', function (e) {
+
+                            infowindow.close();
+                            infowindow = new google.maps.InfoWindow({ content: 'Tọa độ (' + Number(e.latLng.lat()).toFixed(3) + ', ' + Number(e.latLng.lng()).toFixed(3) + ')' });
+
+                            infowindow.open(map, marker);
+                            removeMarkerShow();
+
+                        });
+
+                        google.maps.event.addListener(marker, 'dragend', function (e) {
+
+                            //UpdateToaDo(marker.position.lat(), marker.position.lng());
+                            //LoadCacXe().done(function () {
+                            //    UpdateKhoangCach(marker);
+                            //});
+                        });
+
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+
+                }
+            )
+        }
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo&callback=initMap">
