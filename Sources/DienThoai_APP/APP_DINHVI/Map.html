@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Định vị thông tin khách hàng</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <!--font awesome-->
+    <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--style-->
+    <link rel="stylesheet" href="Css/style.css">
+
+    <style>
+        /*#map {
+            height:620px;
+            width:100%;
+        }
+
+        html, body {
+            height: 100%;
+            margin : 0;
+            padding : 0;
+        }
+
+        #header {
+            position: absolute;
+            top: 10px;
+            left: 15%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto','sans-serif';
+            line-height: 30px;
+            padding-left: 10px;
+        }
+
+        #list-points {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        thead tr {
+            color: green;
+            font-weight: bold;
+        }
+
+        .forMap {
+            height: 580px
+        }
+
+        .panel-body {
+            overflow-x: scroll;
+            overflow-y: scroll;
+        }*/
+    </style>
+</head>
+<body>
+    <div class="row forMap">
+        <div class="col-md-3 forMap">
+            <div class="panel panel-default">
+                <div class="panel-heading"><b>Danh sách các điểm</b></div>
+                <div class="panel-body forMap">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <!--<td>#</td>
+                                <td>Địa chỉ</td>
+                                <td>SDT</td>
+                                <td>Loại xe</td>
+                                <td>Thời điểm</td>
+                                <td>Tọa độ</td>
+                                <td></td>-->
+                                <td align="center">STT</td>
+                                <td>Thông tin xe</td>
+                            </tr>
+                        </thead>
+                        <tbody id="tb"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 forMap">
+            <div id="header" class=" form-inline">
+                <label>Địa chỉ :</label>
+                <input id="pts" type="hidden">
+                <input id="address" type="text" class="form-control" value="Ha Noi" style="width: 300px">
+                <input id="search" type="button" class="btn btn-default" value="Tìm">
+                <input id="button" type="button" class="btn btn-default" value="Clear marker">
+                <!--<input id="distance" type="button" class="btn btn-default" value="Hiển thị 10 xe gần nhất">-->
+                <input id="send" type="button" class="btn btn-default" value="Gửi cho xe">
+            </div>
+            <div id="map"></div>
+        </div>
+    </div>
+
+    
+   
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script>
+
+        function initMap() {
+            var tohienthanh = { lat: 10.7778948, lng: 106.6655195 };
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 9,
+                center: tohienthanh
+            });
+       
+        }
+
+        
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo&callback=initMap">
+    </script>
+</body>
+</html>
