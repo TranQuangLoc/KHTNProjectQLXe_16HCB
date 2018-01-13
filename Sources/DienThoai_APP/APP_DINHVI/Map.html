@@ -115,6 +115,50 @@
        
         }
 
+		function loadDiem(map, geo)
+        {
+            firebase.child("Diem").on("value", function (snapshot) {
+                var stt = 1;
+                var html = '';
+                snapshot.forEach(function (snapchild) {
+
+                    var key = snapchild.key();
+                    var item = snapchild.val();
+                    var orig = JSON.parse(item.OriginGeo);
+                    var point = {
+                        item: item,
+                        key: key,
+                        map: map,
+                        geo: geo,
+
+                    };
+
+                    var buttonGeo = snapchild.val().TrangThai === "waiting" ?
+                        `<button class="btn btn-success" onclick="geocoding('${key}')"><i class="fa fa-location-arrow" aria-hidden="true"></i> Geo</button>` : '';
+
+                    points.push(point);
+
+                    html += `
+                        <tr data-address="${item.DiaChi}" class="rows">
+                            <td align="center" class="align-middle">${stt}</td>
+                            <td>
+                                <p><i class="fa fa-map-marker" aria-hidden="true"></i> ${item.DiaChi}</p>
+                                <p><i class="fa fa-phone-square" aria-hidden="true"></i> ${item.SoDienThoai}</p>
+                                <p><i class="fa fa-bus" aria-hidden="true"></i> Loại xe: ${item.LoaiXe_Ten}</p>
+                                <p><i class="fa fa-clock-o" aria-hidden="true"></i> Thời điểm: ${item.NgayTao}</p>
+                                <p><i class="fa fa-map-o" aria-hidden="true"></i> Tọa độ: (${Number(item.Lat).toFixed(4)}, ${Number(item.Lng).toFixed(4)})</p>
+                                <p>${buttonGeo}</p>
+                            </td>
+                        </tr>
+                            `;
+                    stt++;
+                    
+                   
+                })
+
+                $("#tb").html(html);
+            });
+        }    
         
     </script>
     <script async defer
