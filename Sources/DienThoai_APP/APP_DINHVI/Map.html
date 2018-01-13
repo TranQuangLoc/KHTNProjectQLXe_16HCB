@@ -241,7 +241,8 @@
                 )
             }
         }
-
+		
+		//GEO tren nut tim kiem
 		function geocodeAddress(geocoder, map) {
             var address = document.getElementById('address').value;
             geocoder.geocode({ 'address': address },
@@ -296,6 +297,52 @@
                 }
             )
         }
+		
+		//Keo DIEM
+        function ReverserGeoCode(geocoder, map, marker) {
+            var point = points.filter(n => n.id === marker.point_id);
+            if (point) {
+                var latlng = { lat: marker.position.lat(), lng: marker.position.lng() };
+                geocoder.geocode({ 'location': latlng }, function (results, status) {
+                    if (status === 'OK') {
+                        if (results[0]) {
+
+                            UpdateToaDo(marker.point_id, marker.position.lat(), marker.position.lng(), results[0].formatted_address);
+                        } else {
+                            window.alert('No results found');
+                        }
+                    } else {
+                        window.alert('Geocoder failed due to: ' + status);
+                    }
+                });
+            }
+
+            
+        }
+
+		
+        function removeMarker() {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+                markers.splice(0, 1);
+            }
+
+            for (var i = 0; i < markers_xe.length; i++) {
+                markers_xe[i].setMap(null);               
+            }
+            markers_xe.splice(0, markers_xe.length);
+            removeMarkerShow();
+
+        }
+
+        function removeMarkerShow()
+        {
+            for (var i = 0; i < list_markers_show.length; i++) {
+                list_markers_show[i].setMap(null);
+            }
+            list_markers_show.splice(0, list_markers_show.length);
+        }
+
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo&callback=initMap">
