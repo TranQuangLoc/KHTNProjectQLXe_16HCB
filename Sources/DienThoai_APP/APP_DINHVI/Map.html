@@ -414,6 +414,39 @@
             firebase.child("Diem/" + id).update(data);
         }
 		
+		function LoadCacXe(loaixe_ten)
+        {
+            var k = $.Deferred();
+
+            firebase.child("Xe").on("value", function (snapshot) {
+
+                snapshot.forEach(function (snapchild) {
+                    var key = snapchild.key();
+                    var item = snapchild.val();
+                    //console.log(loaixe_ten, item);
+                    if (item.tinhtrang_id === 1 && item.loaiXe === loaixe_ten) {
+
+                        var location = { lat: item.lat, lng: item.lng };
+
+                        marker_x = new google.maps.Marker({
+                            position: location,
+                            map: null,
+                            range: 0,
+                            icon: "icon-taxi.png",
+                            id_xe: key,
+                            ten_xe: item.tenXe
+                        });
+                    
+                        markers_xe.push(marker_x); 
+                    }
+                    
+                })
+
+                k.resolve();
+            });
+
+            return k.promise();
+        }
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo&callback=initMap">
