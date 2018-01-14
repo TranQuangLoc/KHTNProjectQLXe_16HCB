@@ -25,10 +25,32 @@
             <input type="text" id="txtUsername" class="w3-input form-control" required placeholder="Tên đăng nhập">
             <input type="password" id="txtPassword" class="w3-input form-control" required placeholder="Mật khẩu">
             <button class="w3-btn w3-green" type="button" id="btnDangNhap">Đăng nhập</button>
-
         </form>
     </div>
    
+   <div id="home" >
+        <button onclick="logout()">Exit</button>
+        <div style="width: 70%; padding: 20px 40px 10px 40px; margin: auto">
+            <div class=" w3-panel w3-pale-green w3-bottombar w3-border-green w3-border w3-center">
+                <h3>Thông tin</h3>
+            </div>
+            <div class=" w3-panel w3-pale-green w3-border-green w3-border">
+                <div id="info">
+                    
+                </div>
+            </div>
+        </div>
+        <div style="width: 70%; padding: 20px 40px 10px 40px; margin: auto">
+            <div class=" w3-panel w3-pale-green w3-bottombar w3-border-green w3-border w3-center">
+                <h3>Khách hàng (Điểm)</h3>
+            </div>
+            <div id="point">
+                
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+	
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo"></script>
     <script src="Scripts/customMarker.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
