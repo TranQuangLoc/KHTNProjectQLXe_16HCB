@@ -472,6 +472,24 @@
                 console.log(list_markers_show[i].range);
             }
         }
+		
+		function ShowTop10Nearest(map)
+        {
+            var top10 = list_markers_show.length > 10 ? 10 : list_markers_show.length;
+            for (i = 0; i < top10; i++)
+            {
+                list_markers_show[i].setMap(map);
+
+                
+                var info = 'Xe: ' + list_markers_show[i].ten_xe;
+                var infowindow = new google.maps.InfoWindow({
+                    content: info
+                });
+
+                infowindow.open(map, list_markers_show[i]);
+            }
+        }
+		
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo&callback=initMap">
