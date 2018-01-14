@@ -122,7 +122,23 @@
         });
 
         
-        
+        function ShowMarker(obj)
+        {
+            var p = new google.maps.LatLng(obj.lat, obj.lng);
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: p
+            });
+
+            map.setCenter(p);
+
+            markerUser = new google.maps.Marker({
+                position: { lat: obj.lat, lng: obj.lng },
+                map: map,
+                range: 0,
+                icon: "icon-taxi.png"
+            });
+        }
     </script>
 
     
