@@ -1,0 +1,20 @@
+D:\Learn\HCDH\HK III\LTHD\DoAn\SYSTEM_BARG\APP_TAIXE\bin\APP_TAIXE.dll.config
+D:\Learn\HCDH\HK III\LTHD\DoAn\SYSTEM_BARG\APP_TAIXE\bin\APP_TAIXE.dll
+D:\Learn\HCDH\HK III\LTHD\DoAn\SYSTEM_BARG\APP_TAIXE\bin\APP_TAIXE.pdb
+D:\Learn\HCDH\HK III\LTHD\DoAn\SYSTEM_BARG\APP_TAIXE\obj\Debug\APP_TAIXE.csprojResolveAssemblyReference.cache
+D:\Learn\HCDH\HK III\LTHD\DoAn\SYSTEM_BARG\APP_TAIXE\obj\Debug\APP_TAIXE.dll
+D:\Learn\HCDH\HK III\LTHD\DoAn\SYSTEM_BARG\APP_TAIXE\obj\Debug\APP_TAIXE.pdb
+C:\Users\TNAM\Desktop\SignalR_App\SYSTEM_BARG\APP_TAIXE\bin\APP_TAIXE.dll.config
+C:\Users\TNAM\Desktop\SignalR_App\SYSTEM_BARG\APP_TAIXE\bin\APP_TAIXE.dll
+C:\Users\TNAM\Desktop\SignalR_App\SYSTEM_BARG\APP_TAIXE\bin\APP_TAIXE.pdb
+C:\Users\TNAM\Desktop\SignalR_App\SYSTEM_BARG\APP_TAIXE\obj\Debug\APP_TAIXE.csprojResolveAssemblyReference.cache
+C:\Users\TNAM\Desktop\SignalR_App\SYSTEM_BARG\APP_TAIXE\obj\Debug\APP_TAIXE.csproj.CoreCompileInputs.cache
+C:\Users\TNAM\Desktop\SignalR_App\SYSTEM_BARG\APP_TAIXE\obj\Debug\APP_TAIXE.dll
+C:\Users\TNAM\Desktop\SignalR_App\SYSTEM_BARG\APP_TAIXE\obj\Debug\APP_TAIXE.pdb
+C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_TAIXE\bin\APP_TAIXE.dll.config
+C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_TAIXE\bin\APP_TAIXE.dll
+C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_TAIXE\bin\APP_TAIXE.pdb
+C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_TAIXE\obj\Debug\APP_TAIXE.csproj.CoreCompileInputs.cache
+C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_TAIXE\obj\Debug\APP_TAIXE.dll
+C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_TAIXE\obj\Debug\APP_TAIXE.pdb
+C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_TAIXE\obj\Debug\APP_TAIXE.csprojResolveAssemblyReference.cache

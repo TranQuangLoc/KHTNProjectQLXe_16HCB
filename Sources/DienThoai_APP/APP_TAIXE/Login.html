@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Đăng nhập</title>
+  
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+    
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="sweetalert-master/dist/sweetalert.css" rel="stylesheet" />
+    <script src="sweetalert-master/dist/sweetalert.min.js"></script>
+    <!--style-->
+    <link href="Css/style.css" rel="stylesheet" />
+</head>
+<body class="layout-boxed">
+    <div id="login">
+        <form class="w3-container">
+            <h3>Đăng nhập trang quản trị</h3>
+            <input type="text" id="txtUsername" class="w3-input form-control" required placeholder="Tên đăng nhập">
+            <input type="password" id="txtPassword" class="w3-input form-control" required placeholder="Mật khẩu">
+            <button class="w3-btn w3-green" type="button" id="btnDangNhap">Đăng nhập</button>
+
+        </form>
+    </div>
+   
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo"></script>
+    <script src="Scripts/customMarker.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script>
+        
+
+        $("#btnDangNhap").click(function () {
+            var objectNV;
+            var username = $("#txtUsername").val();
+            var password = $("#txtPassword").val();
+            
+            if (username.length == 0 || password.length == 0)
+            {
+                alert("Vui lòng nhập username và password !!!");
+                return;
+            } else {
+                firebase.child("NhanVien/NhanVienLaiXe").on("value", function (snapshot) {
+                    snapshot.forEach(function (snapchild) {
+                        var item = snapchild.val();
+                        item.id = snapchild.key();
+                       
+                        if (item.username === username && ""+item.password === password) {        
+                            firebase.child("Xe").once("value", function (snapshot) {
+                                snapshot.forEach(function (child) {
+                                    var e = child.val();
+                                    e.id = child.key();
+
+                                    if (e.maNV === item.id) {
+
+                                        item.thongTinXe = e.loaiXe + " - " + e.tenXe;
+                                        item.tinhtrang = e.tinhtrang;
+                                        console.log(e.tinhtrang);
+                                        item.lat = e.lat;
+                                        item.lng = e.lng;
+                                        item.maXe = e.id;
+
+                                        localStorage.setItem("IsLogin", 1);
+                                        localStorage.setItem("user_data", JSON.stringify(item));
+
+                                        GetInfoUser();
+                                        GuiToaDoXe();
+                                        ListenFromDINHVI();
+
+                                        return;
+                                    }
+                                })
+                            });
+                        }
+                    });
+                    
+                    
+                });
+            }                  
+        });
+
+        
+        
+    </script>
+
+    
+
+</body>
+</html>

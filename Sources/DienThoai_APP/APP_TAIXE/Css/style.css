@@ -1,0 +1,90 @@
+﻿body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "george ";
+    font-weight: 400;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#map {
+    height: 620px;
+    width: 100%;
+}
+.layout-boxed {
+    background: url(../../Images/boxed-bg.jpg) repeat fixed;
+}
+
+#login {
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+    width: 400px;
+    margin: 0 auto;
+    height: 269px;
+    margin-top: 150px;
+    margin-bottom: 2%;
+    -webkit-transition: opacity 1s;
+    padding-top: 0;
+    padding-bottom: 10%;
+}
+
+    #login form {
+        background: #ececec;
+        padding: 6% 4%;
+        width: 400px;
+        margin: 0 auto;
+        height: 269px;
+        margin-top: 150px;
+        margin-bottom: 2%;
+        transition: opacity 1s;
+        -webkit-transition: opacity 1s;
+        padding-top: 0;
+        padding-bottom: 10%;
+    }
+
+        #login form h3 {
+            padding: 20px 0;
+            font-size: 140%;
+            font-weight: 300;
+            text-align: center;
+            color: #fff;
+            /* font-weight: bold; */
+            font-style: normal !important;
+            font-size: 24px;
+            color: #777;
+            margin-top: 0;
+            text-transform: uppercase;
+        }
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    background: #fff;
+    margin-bottom: 4%;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    font-size: 21px;
+    height: 42px;
+    border-radius: 0px;
+}
+
+#login form button {
+    width: 50%;
+    background: #63E0D6 !important;
+    border: thin solid rgba(0,0,0,.1);
+    padding: 10px;
+    font-family: 'Open Sans',sans-serif;
+    color: #fff;
+    cursor: pointer;
+    transition: background .3s;
+    -webkit-transition: background .3s;
+    font-size: 17px;
+    margin: auto;
+    text-transform: uppercase;
+    margin-left: 25%;
+    outline: none;
+    box-shadow: 0 0 0 0;
+}
+
+    #login form button:hover {
+        background: #00b4a5 !important;
+    }
