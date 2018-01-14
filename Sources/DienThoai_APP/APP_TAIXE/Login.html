@@ -76,6 +76,29 @@
         }   
 
 
+		$("#btnStart").click(function () {
+            var idXe = $("#maxe").val();
+            
+            if (!(id_diem === "")) {
+                firebase.child("Xe/" + idXe).update({ tinhtrang: "đang bận", tinhtrang_id: 2 });
+                firebase.child("Diem/" + id_diem).update({ TrangThai: "đã nhận xe" });
+                //reset map chp app tai xe
+                directionsDisplay.setMap(null);
+            }
+
+        });
+
+        $("#btnEnd").click(function () {
+            var idXe = $("#maxe").val();
+
+            if (!(id_diem === "")) {
+                firebase.child("Xe/" + idXe).update({ tinhtrang: "đã sẵn sàng", tinhtrang_id: 1 });
+                firebase.child("Diem/" + id_diem).update({ TrangThai: "đã hoàn thành" });
+                id_diem = "";
+            }
+
+        });
+		
         $("#btnDangNhap").click(function () {
             var objectNV;
             var username = $("#txtUsername").val();
