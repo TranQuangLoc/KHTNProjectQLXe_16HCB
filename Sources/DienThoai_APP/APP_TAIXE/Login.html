@@ -219,6 +219,55 @@
                 icon: "icon-taxi.png"
             });
         }
+		
+		var idInterval = null;
+
+        function GenerateLocation() {
+            if (document.getElementById("chkIsRun").checked) {
+                idInterval = setInterval(function () {
+                    var lat = Number($("#lat").text());
+                    var lng = Number($("#lng").text());
+                    lat = Number(lat + 0.0001).toFixed(6);
+                    lng = Number(lng + 0.0001).toFixed(6);
+                    $("#lat").text(lat);
+                    $("#lng").text(lng);
+                }, 1000);
+            }
+            else {
+                clearInterval(idInterval);
+            }
+        }
+
+        function Move()
+        {
+            mp = !mp;
+            if (mp)
+            {
+                var fn = function () {
+                    if (!mp) return;
+
+                    i++;
+                    if (i < routes.length) {
+                        markerUser.animateTo(routes[i], { easing: 'linear', duration: 1000, complete: fn });
+                    }
+                }
+
+                fn();  
+            }
+               
+        }
+
+        function GuiToaDoXe()
+        {
+            setInterval(function () {
+                var lat = Number($("#lat").text());
+                var lng = Number($("#lng").text());
+                var idXe = $("#maxe").val();
+
+                firebase.child("Xe/" + idXe).update({ lat: lat, lng: lng }); 
+            }, 5000);
+        }
+
     </script>
 
     
