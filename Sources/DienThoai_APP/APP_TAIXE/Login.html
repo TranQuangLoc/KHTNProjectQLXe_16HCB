@@ -121,6 +121,59 @@
             }                  
         });
 
+		function GetInfoUser()
+        {
+            var json = localStorage.getItem("user_data");
+            var obj = JSON.parse(json);
+
+            console.log(obj.maXe);
+            
+            var html = `    
+                    <p><b>Mã nhân viên</b>: ${obj.id}</p>
+                    <p><b>Tên nhân viên</b>: ${obj.tennv}</p>
+                    <p><b>Thông tin xe</b>: ${obj.thongTinXe}</p>
+                    <p id="lblstatus" ><b>Tình trạng</b>: ${obj.tinhtrang}</p>
+                    <div>
+                        <p><b>Tọa độ hiện tại</b> :  ( <label id="lat">${Number(obj.lat).toFixed(4)}</label> , <label id="lng">${Number(obj.lng).toFixed(4)}</label> )     
+                    </div>
+                    <div>
+                        <input type="checkbox" id="chkIsRun" value="" onclick="Move()" /> Mô phỏng</p>
+                    </div>
+                    
+                    <div>
+                        <input type="button" id="btnStart" class="w3-btn w3-green" /> Bắt Đầu</p>
+                    </div>
+                    <div>
+                        <input type="button" id="btnEnd" class="w3-btn w3-green" /> Kết Thúc</p>
+                    </div>
+
+                    <input type="hidden" value="${obj.maXe}" id="maxe" />
+            `;
+
+            $("#info").html(html);
+
+            $('#login').hide();
+
+            $('#home').show();
+
+            ShowMarker(obj);
+            firebase.child("Xe/" + obj.maXe).on("child_changed", function (snapshot) {
+                var val = snapshot.val();
+                var prop = snapshot.key();
+                if (prop === "tinhtrang") {
+                    var html = "<b>Tình trạng</b>: " + val;
+                    $("#lblstatus").html(html);
+
+                    var json = localStorage.getItem("user_data");
+                    var obj = JSON.parse(json);
+                    obj.tinhtrang = val;
+                    obj.tinhtrang_id = val === "đang bận" ? 2 : 1;
+                    localStorage.setItem("user_data", JSON.stringify(obj));
+                }
+            });
+           
+        }
+
         
         function ShowMarker(obj)
         {
