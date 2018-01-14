@@ -55,7 +55,22 @@
     <script src="Scripts/customMarker.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script>
-        
+        var firebase = new Firebase('https://khtnproject.firebaseio.com/');
+        var currentPoint = { lat: 10.7778948, lng: 106.6655195 };
+        var markerUser = {};
+        var map = {};
+        var routes = [];
+        var i = -1;
+        var mp = false;
+        var id_diem;
+        var directionsDisplay;
+        if (!localStorage.getItem("IsLogin") || localStorage.getItem("IsLogin") !== '1')
+        {
+            $('#home').hide();
+            $('#login').show();
+        }
+             
+
 
         $("#btnDangNhap").click(function () {
             var objectNV;
