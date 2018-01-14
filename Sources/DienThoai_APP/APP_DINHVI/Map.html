@@ -447,6 +447,31 @@
 
             return k.promise();
         }
+		
+		function UpdateKhoangCach(marker)
+        {
+            list_markers_show.splice(0, list_markers_show.length);
+            for(i = 0; i < markers_xe.length; i++)
+            {
+                var km = calculateDistance(marker.position, markers_xe[i].position);
+                markers_xe[i].range = km;
+                list_markers_show.push(markers_xe[i]);
+
+                //TinhKhoangCach(marker, markers_xe[i], i, function (e, x) {
+                //    markers_xe[x].range = e;
+                //    list_markers_show.push(markers_xe[x]);
+                //});
+            }
+
+            list_markers_show.sort(function(a,b) {
+                return a.range - b.range;
+            } )
+            
+            for(i = 0; i < list_markers_show.length;i++)
+            {
+                console.log(list_markers_show[i].range);
+            }
+        }
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo&callback=initMap">
