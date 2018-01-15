@@ -268,6 +268,70 @@
             }, 5000);
         }
 
+		function ListenFromDINHVI() {
+            var idXe = $("#maxe").val();
+
+            firebase.child("YeuCau").on("child_added", function (snapshot) {
+               // console.log(idXe);
+                var e = snapshot.val();
+                if (idXe === e.idXe && e.trangthai === "Waiting")
+                {
+                    var dc = JSON.parse(e.diachi);
+                    swal({
+                        title: "Yêu cầu xác nhận?",
+                        text: "Thông tin khách hàng gửi từ hệ thống<br><br><br><p><b>Số điện thoại</b> : " + e.sdt + "</p><br><p><b>Địa chỉ</b> : " + dc.diachi + "</p>",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Chấp nhận",
+                        cancelButtonText: "Từ chối",
+                        closeOnConfirm: false,
+                        closeOnCancel: false,
+                        html: true
+                    },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            var html = `<input type="hidden" id="sdt" value="${e.sdt}"/>
+                                        <input type="hidden" id="dchi" value="${dc.diachi}"/>
+                                        <p><b>Số điện thoại</b>: ${e.sdt}</p>
+                                        <p><b>Địa chỉ</b>: ${dc.diachi}</p>`;
+
+                            $('#point').html(html);
+                            firebase.child("YeuCau/" + snapshot.key()).update({ trangthai: "OK" });
+                            firebase.child("Diem/" + e.idDiem).update({ TrangThai: "đang chờ" });
+                            var pointXe = {
+                                lat: Number($("#lat").text()),
+                                lng: Number($("#lng").text())
+                            }
+
+                            var pointKhach = {
+                                lat: dc.lat,
+                                lng: dc.lng
+                            }
+
+                            var markerKH = new google.maps.Marker({
+                                position: pointKhach,
+                                map: map,
+                                range: 0,
+                                icon: "icon-people.png"
+                            });
+                            
+                           
+                            displayRoute(pointXe, pointKhach);
+
+                            swal("Đã xác nhận!", "Bạn đã chấp nhận thông tin từ hệ thống", "success");
+
+                            id_diem = e.key_diem;
+                            console.log(id_diem);
+                        } else {
+                            firebase.child("YeuCau/" + snapshot.key()).update({ trangthai: "Deny" });
+                            swal("Đã từ chối", "Bạn đã từ chối thông tin nhận từ hệ thống", "error");
+                        }
+                    });
+                }
+            });
+        }
+
     </script>
 
     
