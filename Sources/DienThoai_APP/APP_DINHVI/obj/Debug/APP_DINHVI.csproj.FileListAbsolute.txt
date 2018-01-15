@@ -25,3 +25,9 @@ C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.c
 C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.dll
 C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.pdb
 C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.csprojResolveAssemblyReference.cache
+D:\KHTN\HK3\LTHD\KHTNProjectQLXe_16HCB\Sources\DienThoai_APP\APP_DINHVI\bin\APP_DINHVI.dll.config
+D:\KHTN\HK3\LTHD\KHTNProjectQLXe_16HCB\Sources\DienThoai_APP\APP_DINHVI\bin\APP_DINHVI.dll
+D:\KHTN\HK3\LTHD\KHTNProjectQLXe_16HCB\Sources\DienThoai_APP\APP_DINHVI\bin\APP_DINHVI.pdb
+D:\KHTN\HK3\LTHD\KHTNProjectQLXe_16HCB\Sources\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.csprojResolveAssemblyReference.cache
+D:\KHTN\HK3\LTHD\KHTNProjectQLXe_16HCB\Sources\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.dll
+D:\KHTN\HK3\LTHD\KHTNProjectQLXe_16HCB\Sources\DienThoai_APP\APP_DINHVI\obj\Debug\APP_DINHVI.pdb
