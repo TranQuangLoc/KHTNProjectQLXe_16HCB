@@ -18,3 +18,9 @@ C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_TAIXE\obj\Debug\APP_TAIXE.csp
 C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_TAIXE\obj\Debug\APP_TAIXE.dll
 C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_TAIXE\obj\Debug\APP_TAIXE.pdb
 C:\Users\LOCTQ\Desktop\LTHD_DOAN\DienThoai_APP\APP_TAIXE\obj\Debug\APP_TAIXE.csprojResolveAssemblyReference.cache
+D:\KHTN\HK3\LTHD\KHTNProjectQLXe_16HCB\Sources\DienThoai_APP\APP_TAIXE\bin\APP_TAIXE.dll.config
+D:\KHTN\HK3\LTHD\KHTNProjectQLXe_16HCB\Sources\DienThoai_APP\APP_TAIXE\bin\APP_TAIXE.dll
+D:\KHTN\HK3\LTHD\KHTNProjectQLXe_16HCB\Sources\DienThoai_APP\APP_TAIXE\bin\APP_TAIXE.pdb
+D:\KHTN\HK3\LTHD\KHTNProjectQLXe_16HCB\Sources\DienThoai_APP\APP_TAIXE\obj\Debug\APP_TAIXE.csprojResolveAssemblyReference.cache
+D:\KHTN\HK3\LTHD\KHTNProjectQLXe_16HCB\Sources\DienThoai_APP\APP_TAIXE\obj\Debug\APP_TAIXE.dll
+D:\KHTN\HK3\LTHD\KHTNProjectQLXe_16HCB\Sources\DienThoai_APP\APP_TAIXE\obj\Debug\APP_TAIXE.pdb

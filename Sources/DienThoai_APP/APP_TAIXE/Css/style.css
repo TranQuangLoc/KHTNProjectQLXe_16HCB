@@ -1,7 +1,7 @@
 ﻿body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family: "george ";
+    font-family: "Roboto";
     font-weight: 400;
     overflow-x: hidden;
     overflow-y: auto;
@@ -88,3 +88,47 @@ input[type="text"], input[type="password"] {
 #login form button:hover {
     background: #00b4a5 !important;
 }
+
+
+/* CSS HOME */
+.taixe-left {
+    width: 300px;
+    height: 620px;
+    background: #fff;
+}
+
+.taixe-right {
+    
+    width: calc(100% - 300px);
+}
+
+.main-title {
+    font-size: 18px;
+    background: #5cb85c;
+    color: #fff;
+    margin: 0 auto;
+    text-transform: uppercase;
+    padding: 10px 7px;
+}
+
+.taixe-content {
+    padding: 10px;
+}
+
+.box-main-button p:first-child {
+    margin-right: 15px;
+}
+
+.btn-main {
+    padding: 3px;
+    width: 27px;
+    height: 27px;
+    border-radius: 0px;
+}
+
+#lat, #lng {
+    font-weight: normal;
+}
+
+
+/* END CSS HOME*/

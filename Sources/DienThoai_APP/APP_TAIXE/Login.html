@@ -2,21 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Đăng nhập</title>
-  
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
-    
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" rel="stylesheet">
+    <!--font awesome-->
+    <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!--style-->
+    <!--<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">-->
+    <link href="Css/style.css" rel="stylesheet" />
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
     <!-- Latest compiled and minified JavaScript -->
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link href="sweetalert-master/dist/sweetalert.css" rel="stylesheet" />
     <script src="sweetalert-master/dist/sweetalert.min.js"></script>
-    <!--style-->
-    <link href="Css/style.css" rel="stylesheet" />
+
 </head>
 <body class="layout-boxed">
     <div id="login">
@@ -27,30 +32,39 @@
             <button class="w3-btn w3-green" type="button" id="btnDangNhap">Đăng nhập</button>
         </form>
     </div>
-   
-   <div id="home" >
-        <button onclick="logout()">Exit</button>
-        <div style="width: 70%; padding: 20px 40px 10px 40px; margin: auto">
-            <div class=" w3-panel w3-pale-green w3-bottombar w3-border-green w3-border w3-center">
-                <h3>Thông tin</h3>
-            </div>
-            <div class=" w3-panel w3-pale-green w3-border-green w3-border">
-                <div id="info">
-                    
+
+    <div id="home">
+        <div class="clearfix">
+            <div class="taixe-left pull-left">
+                <div>
+                    <div class=" w3-panel w3-pale-green w3-bottombar w3-border-green w3-border w3-center">
+                        <h3 class="main-title">Thông tin</h3>
+                    </div>
+                    <div class=" w3-panel w3-pale-green w3-border-green w3-border">
+                        <div id="info" class="taixe-content">
+
+                        </div>
+                    </div>
                 </div>
+
+                <div>
+                    <div class=" w3-panel w3-pale-green w3-bottombar w3-border-green w3-border w3-center">
+                        <h3 class="main-title">Khách hàng (Điểm)</h3>
+                    </div>
+                    <div class="taixe-content" id="point">
+                        <button class="btn btn-danger" onclick="logout()">Đăng xuất</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="taixe-right pull-right">
+                <div id="map"></div>
             </div>
         </div>
-        <div style="width: 70%; padding: 20px 40px 10px 40px; margin: auto">
-            <div class=" w3-panel w3-pale-green w3-bottombar w3-border-green w3-border w3-center">
-                <h3>Khách hàng (Điểm)</h3>
-            </div>
-            <div id="point">
-                
-            </div>
-        </div>
-        <div id="map"></div>
+
+
     </div>
-	
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo"></script>
     <script src="Scripts/customMarker.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
@@ -64,21 +78,19 @@
         var mp = false;
         var id_diem;
         var directionsDisplay;
-        if (!localStorage.getItem("IsLogin") || localStorage.getItem("IsLogin") !== '1')
-        {
+        if (!localStorage.getItem("IsLogin") || localStorage.getItem("IsLogin") !== '1') {
             $('#home').hide();
             $('#login').show();
         }
-        else
-        {
+        else {
             GetInfoUser();
-            
-        }   
+
+        }
 
 
-		$("#btnStart").click(function () {
+        $("#btnStart").click(function () {
             var idXe = $("#maxe").val();
-            
+
             if (!(id_diem === "")) {
                 firebase.child("Xe/" + idXe).update({ tinhtrang: "đang bận", tinhtrang_id: 2 });
                 firebase.child("Diem/" + id_diem).update({ TrangThai: "đã nhận xe" });
@@ -98,14 +110,13 @@
             }
 
         });
-		
+
         $("#btnDangNhap").click(function () {
             var objectNV;
             var username = $("#txtUsername").val();
             var password = $("#txtPassword").val();
-            
-            if (username.length == 0 || password.length == 0)
-            {
+
+            if (username.length == 0 || password.length == 0) {
                 alert("Vui lòng nhập username và password !!!");
                 return;
             } else {
@@ -113,8 +124,8 @@
                     snapshot.forEach(function (snapchild) {
                         var item = snapchild.val();
                         item.id = snapchild.key();
-                       
-                        if (item.username === username && ""+item.password === password) {        
+
+                        if (item.username === username && "" + item.password === password) {
                             firebase.child("Xe").once("value", function (snapshot) {
                                 snapshot.forEach(function (child) {
                                     var e = child.val();
@@ -142,37 +153,48 @@
                             });
                         }
                     });
-                    
-                    
                 });
-            }                  
+            }
         });
 
-		function GetInfoUser()
-        {
+        function GetInfoUser() {
             var json = localStorage.getItem("user_data");
             var obj = JSON.parse(json);
 
             console.log(obj.maXe);
-            
-            var html = `    
+
+            var html = `
+                    <p><i class="fa fa-barcode" aria-hidden="true"></i> <b>Mã nhân viên</b>: ${obj.id}</p>
+                    <p><i class="fa fa-user-circle-o" aria-hidden="true"></i> <b>Tên nhân viên</b>: ${obj.tennv}</p>
+                    <p><i class="fa fa-bus" aria-hidden="true"></i> <b>Thông tin xe</b>: ${obj.thongTinXe}</p>
+                    <p id="lblstatus" ><i class="fa fa-bandcamp" aria-hidden="true"></i> <b>Tình trạng</b>: ${obj.tinhtrang}</p>
+                    <p><i class="fa fa-map-o" aria-hidden="true"></i> <b>Tọa độ hiện tại</b> :  ( <label id="lat">${Number(obj.lat).toFixed(4)}</label> , <label id="lng">${Number(obj.lng).toFixed(4)}</label> ) </p>
+                    <p>
+                        <label><input type="checkbox" id="chkIsRun" value="" onclick="Move()"> Mô phỏng</label>
+                    </p>
+
+                    <div class="clearfix box-main-button">
+                        <p class="pull-left"><button type="button" id="btnStart" class="btn btn-success btn-main"><i class="fa fa-play" aria-hidden="true"></i></button> Bắt Đầu</p>
+                        <p class="pull-left"><button type="button" id="btnEnd" class="btn btn-danger btn-main"><i class="fa fa-stop-circle-o" aria-hidden="true"></i></button> Kết Thúc</p>
+                    </div>
+                    
+                    <!--
                     <p><b>Mã nhân viên</b>: ${obj.id}</p>
                     <p><b>Tên nhân viên</b>: ${obj.tennv}</p>
                     <p><b>Thông tin xe</b>: ${obj.thongTinXe}</p>
                     <p id="lblstatus" ><b>Tình trạng</b>: ${obj.tinhtrang}</p>
                     <div>
-                        <p><b>Tọa độ hiện tại</b> :  ( <label id="lat">${Number(obj.lat).toFixed(4)}</label> , <label id="lng">${Number(obj.lng).toFixed(4)}</label> )     
+                        <p><b>Tọa độ hiện tại</b> :  ( <label id="lat">${Number(obj.lat).toFixed(4)}</label> , <label id="lng">${Number(obj.lng).toFixed(4)}</label> )
                     </div>
                     <div>
                         <input type="checkbox" id="chkIsRun" value="" onclick="Move()" /> Mô phỏng</p>
                     </div>
-                    
                     <div>
                         <input type="button" id="btnStart" class="w3-btn w3-green" /> Bắt Đầu</p>
                     </div>
                     <div>
                         <input type="button" id="btnEnd" class="w3-btn w3-green" /> Kết Thúc</p>
-                    </div>
+                    </div>-->
 
                     <input type="hidden" value="${obj.maXe}" id="maxe" />
             `;
@@ -198,12 +220,11 @@
                     localStorage.setItem("user_data", JSON.stringify(obj));
                 }
             });
-           
+
         }
 
-        
-        function ShowMarker(obj)
-        {
+
+        function ShowMarker(obj) {
             var p = new google.maps.LatLng(obj.lat, obj.lng);
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 16,
@@ -219,8 +240,8 @@
                 icon: "icon-taxi.png"
             });
         }
-		
-		var idInterval = null;
+
+        var idInterval = null;
 
         function GenerateLocation() {
             if (document.getElementById("chkIsRun").checked) {
@@ -238,11 +259,9 @@
             }
         }
 
-        function Move()
-        {
+        function Move() {
             mp = !mp;
-            if (mp)
-            {
+            if (mp) {
                 var fn = function () {
                     if (!mp) return;
 
@@ -252,30 +271,28 @@
                     }
                 }
 
-                fn();  
+                fn();
             }
-               
+
         }
 
-        function GuiToaDoXe()
-        {
+        function GuiToaDoXe() {
             setInterval(function () {
                 var lat = Number($("#lat").text());
                 var lng = Number($("#lng").text());
                 var idXe = $("#maxe").val();
 
-                firebase.child("Xe/" + idXe).update({ lat: lat, lng: lng }); 
+                firebase.child("Xe/" + idXe).update({ lat: lat, lng: lng });
             }, 5000);
         }
 
-		function ListenFromDINHVI() {
+        function ListenFromDINHVI() {
             var idXe = $("#maxe").val();
 
             firebase.child("YeuCau").on("child_added", function (snapshot) {
-               // console.log(idXe);
+                // console.log(idXe);
                 var e = snapshot.val();
-                if (idXe === e.idXe && e.trangthai === "Waiting")
-                {
+                if (idXe === e.idXe && e.trangthai === "Waiting") {
                     var dc = JSON.parse(e.diachi);
                     swal({
                         title: "Yêu cầu xác nhận?",
@@ -289,50 +306,50 @@
                         closeOnCancel: false,
                         html: true
                     },
-                    function (isConfirm) {
-                        if (isConfirm) {
-                            var html = `<input type="hidden" id="sdt" value="${e.sdt}"/>
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                var html = `<input type="hidden" id="sdt" value="${e.sdt}"/>
                                         <input type="hidden" id="dchi" value="${dc.diachi}"/>
                                         <p><b>Số điện thoại</b>: ${e.sdt}</p>
                                         <p><b>Địa chỉ</b>: ${dc.diachi}</p>`;
 
-                            $('#point').html(html);
-                            firebase.child("YeuCau/" + snapshot.key()).update({ trangthai: "OK" });
-                            firebase.child("Diem/" + e.idDiem).update({ TrangThai: "đang chờ" });
-                            var pointXe = {
-                                lat: Number($("#lat").text()),
-                                lng: Number($("#lng").text())
+                                $('#point').html(html);
+                                firebase.child("YeuCau/" + snapshot.key()).update({ trangthai: "OK" });
+                                firebase.child("Diem/" + e.idDiem).update({ TrangThai: "đang chờ" });
+                                var pointXe = {
+                                    lat: Number($("#lat").text()),
+                                    lng: Number($("#lng").text())
+                                }
+
+                                var pointKhach = {
+                                    lat: dc.lat,
+                                    lng: dc.lng
+                                }
+
+                                var markerKH = new google.maps.Marker({
+                                    position: pointKhach,
+                                    map: map,
+                                    range: 0,
+                                    icon: "icon-people.png"
+                                });
+
+
+                                displayRoute(pointXe, pointKhach);
+
+                                swal("Đã xác nhận!", "Bạn đã chấp nhận thông tin từ hệ thống", "success");
+
+                                id_diem = e.key_diem;
+                                console.log(id_diem);
+                            } else {
+                                firebase.child("YeuCau/" + snapshot.key()).update({ trangthai: "Deny" });
+                                swal("Đã từ chối", "Bạn đã từ chối thông tin nhận từ hệ thống", "error");
                             }
-
-                            var pointKhach = {
-                                lat: dc.lat,
-                                lng: dc.lng
-                            }
-
-                            var markerKH = new google.maps.Marker({
-                                position: pointKhach,
-                                map: map,
-                                range: 0,
-                                icon: "icon-people.png"
-                            });
-                            
-                           
-                            displayRoute(pointXe, pointKhach);
-
-                            swal("Đã xác nhận!", "Bạn đã chấp nhận thông tin từ hệ thống", "success");
-
-                            id_diem = e.key_diem;
-                            console.log(id_diem);
-                        } else {
-                            firebase.child("YeuCau/" + snapshot.key()).update({ trangthai: "Deny" });
-                            swal("Đã từ chối", "Bạn đã từ chối thông tin nhận từ hệ thống", "error");
-                        }
-                    });
+                        });
                 }
             });
         }
 
-		function displayRoute(pointA, pointB) {
+        function displayRoute(pointA, pointB) {
 
             var start = pointA;
             var end = pointB;
@@ -347,7 +364,7 @@
                 origin: start,
                 destination: end,
                 travelMode: google.maps.TravelMode.DRIVING
-                
+
             };
             var directionsService = new google.maps.DirectionsService();
             directionsService.route(request, function (response, status) {
@@ -358,10 +375,10 @@
                 }
             });
         }
-		
+
     </script>
 
-    
+
 
 </body>
 </html>
