@@ -99,6 +99,8 @@
         var points = [];
 
         var markers = [];
+
+        var map = {};
         
         // Clear marker
         function removeMarker() {
@@ -123,39 +125,14 @@
             document.getElementById('search').addEventListener('click', function () {
                 removeMarker();
                 //TEST LAY 2 DIEM
-                var pA = {
-                    lat: 10.830,
-                    lng: 106.706
-                }
-                var pB = {
-                    lat: 10.790,
-                    lng: 106.628
-                }
-
-                var markerUser = new google.maps.Marker({
-                    position: pB,
-                    map: map,
-                    range: 0,
-                    icon: "Images/icon-people.png"
-                });
-
-                var markerKH = new google.maps.Marker({
-                    position: pA,
-                    map: map,
-                    range: 0,
-                    icon: "Images/icon-taxi.png",
-                });
-
-                displayRoute(pA, pB);
-
-                //geocodeAddress(geocoder, map);
+                geocodeAddress(geocoder, map);
             });
 
             document.getElementById('clear-marker').addEventListener('click', function () {
                 removeMarker();
             });
         }
-
+        
         // Load vị trí trên google map
         function geocodeAddress(geocoder, map) {
             var address = document.getElementById('address').value;
@@ -245,7 +222,6 @@
                         </tr>
                     `;
 
-
                     stt++;
 
                 });
@@ -255,7 +231,52 @@
         }
 
         function GetStatus(data) {
+            firebase.child("YeuCau").on("value", function (snapshot) {
+                snapshot.forEach(function (snapchild) {
+                    var item = snapchild.val();
+                    item.id = snapchild.key();
 
+                    var html = '<input type="hidden" value="' + item.idXe + '" id="maxe" />';
+
+                    if (item.idDiem === data) {
+                        
+
+                        var dc = JSON.parse(item.diachi);
+                        ShowMarker(dc);
+
+                        firebase.child("Xe").once("value", function (snapshot) {
+                            snapshot.forEach(function (child) {
+                                var e = child.val();
+                                e.id = child.key();
+                                if (e.id === item.idXe) {
+                                    var pointXe = {
+                                        lat: dc.lat,
+                                        lng: dc.lng
+                                        //lat: 10.7661,
+                                        //lng: 106.6395
+                                    }
+
+                                    var pointKhach = {
+                                        lat: e.lat,
+                                        lng: e.lng
+                                    }
+
+                                    var markerKH = new google.maps.Marker({
+                                        position: pointKhach,
+                                        map: map,
+                                        range: 0,
+                                        icon: "Images/icon-taxi.png",
+                                    });
+
+                                    displayRoute(pointKhach, pointXe);
+                                }
+                            })
+                        });
+                    } else {
+                        $("#search").trigger("click");
+                    }
+                });
+            });
         }
 
         //Ve duong di
@@ -276,6 +297,7 @@
                 travelMode: google.maps.TravelMode.DRIVING
 
             };
+
             var directionsService = new google.maps.DirectionsService();
             directionsService.route(request, function (response, status) {
                 if (status == google.maps.DirectionsStatus.OK) {
@@ -285,7 +307,27 @@
                 }
             });
         }
+
+        //
+        function ShowMarker(obj) {
+            var p = new google.maps.LatLng(obj.lat, obj.lng);
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: p
+            });
+
+            map.setCenter(p);
+
+            markerUser = new google.maps.Marker({
+                position: { lat: obj.lat, lng: obj.lng },
+                map: map,
+                range: 0,
+                icon: "Images/icon-taxi.png"
+            });
+        }        
     </script>
+
+    
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo&callback=initMap">
     </script>
