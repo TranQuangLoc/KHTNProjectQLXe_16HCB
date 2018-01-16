@@ -3,70 +3,27 @@
 <head>
     <title>Định vị thông tin khách hàng</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" rel="stylesheet">
     <!--font awesome-->
     <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="Css/style.css">
+   <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
     <!-- Latest compiled and minified JavaScript -->
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!--style-->
-    <link rel="stylesheet" href="Css/style.css">
-
-    <style>
-        /*#map {
-            height:620px;
-            width:100%;
-        }
-
-        html, body {
-            height: 100%;
-            margin : 0;
-            padding : 0;
-        }
-
-        #header {
-            position: absolute;
-            top: 10px;
-            left: 15%;
-            z-index: 5;
-            background-color: #fff;
-            padding: 5px;
-            border: 1px solid #999;
-            text-align: center;
-            font-family: 'Roboto','sans-serif';
-            line-height: 30px;
-            padding-left: 10px;
-        }
-
-        #list-points {
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-        thead tr {
-            color: green;
-            font-weight: bold;
-        }
-
-        .forMap {
-            height: 580px
-        }
-
-        .panel-body {
-            overflow-x: scroll;
-            overflow-y: scroll;
-        }*/
-    </style>
+    
 </head>
 <body>
-    <div class="row forMap">
-        <div class="col-md-3 forMap">
-            <div class="panel panel-default">
-                <div class="panel-heading"><b>Danh sách các điểm</b></div>
-                <div class="panel-body forMap">
+    <div class="clearfix forMap">
+        <div class="col-md-3 forMap pd-0">
+            <div class="panel panel-default panel-main">
+                <div class="panel-heading"><h1 class="main-title text-center"><i class="fa fa-list-alt" aria-hidden="true"></i> Danh sách các điểm</h1></div>
+                <div class="panel-body forMap pd-0">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -86,15 +43,21 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9 forMap">
-            <div id="header" class=" form-inline">
-                <label>Địa chỉ :</label>
-                <input id="pts" type="hidden">
-                <input id="address" type="text" class="form-control" value="Ha Noi" style="width: 300px">
-                <input id="search" type="button" class="btn btn-default" value="Tìm">
-                <input id="button" type="button" class="btn btn-default" value="Clear marker">
-                <!--<input id="distance" type="button" class="btn btn-default" value="Hiển thị 10 xe gần nhất">-->
-                <input id="send" type="button" class="btn btn-default" value="Gửi cho xe">
+        <div class="col-md-9 forMap pd-0">
+            <div id="header" class="clearfix form-inline">
+                <div class="col-search-left pull-left">
+                    <label class="pull-left">Địa chỉ :</label>
+                    <input id="pts" type="hidden">
+                    <input id="address" type="text" class="form-control" value="Ha Noi">
+                </div>
+                <div class="col-search-right pull-left">
+                    <button id="search" type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Tìm</button>
+                    <button id="button" type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i> Clear marker</button>
+                    <button id="send" type="button" class="btn btn-success"><i class="fa fa-location-arrow" aria-hidden="true"></i> Gửi cho xe</button>
+                    <!--<input id="button" type="button" class="btn btn-default" value="Clear marker">
+                    <input id="distance" type="button" class="btn btn-default" value="Hiển thị 10 xe gần nhất">
+                    <input id="send" type="button" class="btn btn-default" value="Gửi cho xe">-->
+                </div>
             </div>
             <div id="map"></div>
         </div>

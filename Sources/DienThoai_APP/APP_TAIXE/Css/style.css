@@ -85,6 +85,6 @@ input[type="text"], input[type="password"] {
     box-shadow: 0 0 0 0;
 }
 
-    #login form button:hover {
-        background: #00b4a5 !important;
-    }
+#login form button:hover {
+    background: #00b4a5 !important;
+}

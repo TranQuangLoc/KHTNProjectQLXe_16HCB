@@ -76,11 +76,11 @@
     width: calc(100% - 225px);
     text-align: left;
 }
-    .col-search-left #address {
-        float: left;
-        margin-left: 5px;
-        width: calc(100% - 60px);
-    }
+.col-search-left #address {
+    float: left;
+    margin-left: 5px;
+    width: calc(100% - 60px);
+}
 
 .col-search-left label{
     margin-bottom: 0px;

@@ -2,6 +2,10 @@
     overflow-x: hidden;
 }
 
+.pd-0 {
+    padding: 0px;
+}
+
 #map {
     height: 620px;
     width: 100%;
@@ -13,10 +17,13 @@ html, body {
     padding: 0;
 }
 
+/* KHUNG SEARCH */
 #header {
+    max-width: 800px;
     position: absolute;
-    top: 10px;
-    left: 15%;
+    left: 10px;
+    right: 10px;
+    margin: 0 auto;
     z-index: 5;
     background-color: #fff;
     padding: 5px;
@@ -25,6 +32,41 @@ html, body {
     font-family: 'Roboto','sans-serif';
     line-height: 30px;
     padding-left: 10px;
+    top: 10px;
+}
+
+.col-search-left {
+    width: calc(100% - 300px);
+    text-align: left;
+}
+
+.col-search-left #address {
+    float: left;
+    margin-left: 5px;
+    width: calc(100% - 60px);
+}
+
+.col-search-left label {
+    margin-bottom: 0px;
+    margin-top: 2px;
+}
+/* END KHUNG SEARCH */
+.panel-main  {
+    border: none;
+}.panel.panel-default > .panel-heading {
+    background: green;
+    color: #fff;
+    border-radius: 0px;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    padding-left: 0px;
+}
+
+.main-title {
+    font-size: 16px;
+    margin: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 #list-points {
@@ -32,9 +74,10 @@ html, body {
     margin-right: 10px;
 }
 
-thead tr {
+thead tr td {
     color: green;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
 .forMap {
