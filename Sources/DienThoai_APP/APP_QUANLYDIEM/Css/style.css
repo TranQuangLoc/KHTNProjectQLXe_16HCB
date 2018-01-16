@@ -57,7 +57,7 @@
 
 /* KHUNG SEARCH */
 #header {
-    max-width: 560px;
+    max-width: 640px;
     position: absolute;
     left: 10px;
     right: 10px;
@@ -73,7 +73,7 @@
     top: 10px;
 }
 .col-search-left {
-    width: calc(100% - 102px);
+    width: calc(100% - 225px);
     text-align: left;
 }
     .col-search-left #address {

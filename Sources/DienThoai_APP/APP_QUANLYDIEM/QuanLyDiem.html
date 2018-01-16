@@ -104,6 +104,7 @@
                 </div>
                 <div class="col-search-right pull-right">
                     <button id="search" type="button" class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i> Tìm kiếm</button>
+                    <button id="clear-marker" type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i> Clear marker</button>
                 </div>
             </div>
             <div id="map">
@@ -139,20 +140,30 @@
     </div>
 
     <script>
+        var markers = [];
+
+        function removeMarker() {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+                markers.splice(0, 1);
+            }
+        }
         function initMap() {
             var temp_local = { lat: 10.811, lng: 106.709 };
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 9,
-                center: temp_local,
-                draggable: true,
-                animation: google.maps.Animation.DROP,
-                icon: 'Images/icon-people.png'
+                center: temp_local
             });
 
             var geocoder = new google.maps.Geocoder();
 
             document.getElementById('search').addEventListener('click', function () {
+                removeMarker();
                 geocodeAddress(geocoder, map);
+            });
+
+            document.getElementById('clear-marker').addEventListener('click', function () {
+                removeMarker();
             });
         }
 
