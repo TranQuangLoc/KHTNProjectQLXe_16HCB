@@ -5,7 +5,7 @@
     <title>Quản lý danh sách điểm</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <!-- GOOGLE FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" rel="stylesheet">
     <!-- font awesome -->
     <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
     <!-- Style css -->
@@ -21,7 +21,7 @@
     <div class="clearfix">
         <div class="col-md-3 pd-0">
             <div class="panel panel-default panel-qld">
-                <div class="panel-heading"><h1 class="main-title"><i class="fa fa-list-alt" aria-hidden="true"></i> Danh sách các điểm</h1></div>
+                <div class="panel-heading"><h1 class="main-title text-center"><i class="fa fa-list-alt" aria-hidden="true"></i> Danh sách các điểm</h1></div>
                 <div class="panel-body pd-0">
                     <table class="table table-hover">
                         <thead>
@@ -38,7 +38,7 @@
                                     <p><i class="fa fa-clock-o" aria-hidden="true"></i> Thời điểm: 07/01/2018 14:30:01</p>
                                     <p><i class="fa fa-map-o" aria-hidden="true"></i> Tọa độ: 106.110520, 10.1548151</p>
                                     <p><i class="fa fa-bandcamp" aria-hidden="true"></i> Tình trạng: Đang chờ xe</p>
-                                    <p><button class="btn btn-warning">Xem vị trí</button> <button class="btn btn-info">Thông tin tài xế</button></p>
+                                    <p><button class="btn btn-warning"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button> <button class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button></p>
                                 </td>
                             </tr>
                             <tr>
@@ -50,7 +50,7 @@
                                     <p><i class="fa fa-clock-o" aria-hidden="true"></i> Thời điểm: 07/01/2018 14:30:01</p>
                                     <p><i class="fa fa-map-o" aria-hidden="true"></i> Tọa độ: 106.110520, 10.1548151</p>
                                     <p><i class="fa fa-bandcamp" aria-hidden="true"></i> Tình trạng: Chưa có xe</p>
-                                    <p><button class="btn btn-warning">Xem vị trí</button></p>
+                                    <p><button class="btn btn-warning"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button></p>
                                 </td>
                             </tr>
                             <tr>
@@ -62,7 +62,7 @@
                                     <p><i class="fa fa-clock-o" aria-hidden="true"></i> Thời điểm: 07/01/2018 14:30:01</p>
                                     <p><i class="fa fa-map-o" aria-hidden="true"></i> Tọa độ: 106.110520, 10.1548151</p>
                                     <p><i class="fa fa-bandcamp" aria-hidden="true"></i> Tình trạng: Đang chờ xe</p>
-                                    <p><button class="btn btn-warning">Xem vị trí</button> <button class="btn btn-info">Thông tin tài xế</button></p>
+                                    <p><button class="btn btn-warning"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button> <button class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button></p>
                                 </td>
                             </tr>
                             <tr>
@@ -74,7 +74,7 @@
                                     <p><i class="fa fa-clock-o" aria-hidden="true"></i> Thời điểm: 07/01/2018 14:30:01</p>
                                     <p><i class="fa fa-map-o" aria-hidden="true"></i> Tọa độ: 106.110520, 10.1548151</p>
                                     <p><i class="fa fa-bandcamp" aria-hidden="true"></i> Tình trạng: Đang chờ xe</p>
-                                    <p><button class="btn btn-warning">Xem vị trí</button> <button class="btn btn-info">Thông tin tài xế</button></p>
+                                    <p><button class="btn btn-warning"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button> <button class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button></p>
                                 </td>
                             </tr>
                             <tr>
@@ -86,7 +86,7 @@
                                     <p><i class="fa fa-clock-o" aria-hidden="true"></i> Thời điểm: 07/01/2018 14:30:01</p>
                                     <p><i class="fa fa-map-o" aria-hidden="true"></i> Tọa độ: 106.110520, 10.1548151</p>
                                     <p><i class="fa fa-bandcamp" aria-hidden="true"></i> Tình trạng: Đang chờ xe</p>
-                                    <p><button class="btn btn-warning">Xem vị trí</button> <button class="btn btn-info">Thông tin tài xế</button></p>
+                                    <p><button class="btn btn-warning"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button> <button class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button></p>
                                 </td>
                             </tr>
                         </tbody>
@@ -95,6 +95,16 @@
             </div>
         </div>
         <div class="col-md-9 pd-0">
+            <div id="header" class=" form-inline clearfix">
+                <div class="col-search-left pull-left">
+                    <label class="pull-left">Địa chỉ :</label>
+                    <input id="pts" type="hidden">
+                    <input id="address" type="text" placeholder="Nhập địa chỉ tìm kiếm..." class="form-control" value="">
+                </div>
+                <div class="col-search-right pull-right">
+                    <button id="search" type="button" class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i> Tìm kiếm</button>
+                </div>
+            </div>
             <div id="map">
                 <img src="Images/img-googlemap.jpg" alt="Google map" />
             </div>

@@ -6,6 +6,11 @@
 .pd-0 {
     padding: 0px !important;
 }
+.table thead tr {
+    color: green;
+    font-weight: bold;
+    text-transform: uppercase;
+}
 .main-title {
     font-size: 16px;
     margin: 3px;
@@ -22,6 +27,20 @@
     overflow-y: scroll;
 }
 
+.panel-body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+    background-color: transparent;
+}
+
+.panel-body::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+.panel-body::-webkit-scrollbar-thumb {
+    background-color: #5cb85c;
+}
+
 .panel-qld {
     border: none !important;
     
@@ -33,10 +52,38 @@
     border-radius: 0px;
     background-color: #5cb85c;
     border-color: #4cae4c;
+    padding-left: 0px;
 }
 
-.table thead tr {
-    color: green;
-    font-weight: bold;
-    text-transform: uppercase;
+/* KHUNG SEARCH */
+#header {
+    max-width: 560px;
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    margin: 0 auto;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+    top: 10px;
 }
+.col-search-left {
+    width: calc(100% - 102px);
+    text-align: left;
+}
+    .col-search-left #address {
+        float: left;
+        margin-left: 5px;
+        width: calc(100% - 60px);
+    }
+
+.col-search-left label{
+    margin-bottom: 0px;
+    margin-top: 2px;
+}
+/* END KHUNG SEARCH */
