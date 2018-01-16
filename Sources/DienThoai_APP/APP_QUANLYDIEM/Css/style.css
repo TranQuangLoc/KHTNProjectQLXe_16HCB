@@ -87,3 +87,38 @@
     margin-top: 2px;
 }
 /* END KHUNG SEARCH */
+
+/* MODAL */
+#modal-quanlydiem .modal-title {
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+#modal-quanlydiem .modal-header {
+    padding: 12px 15px;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    color: #fff;
+}
+
+#modal-quanlydiem .modal-content {
+    overflow: hidden;
+}
+
+#modal-quanlydiem .modal-header .close {
+    border-radius: 50%;
+    border: 1px solid #fff;
+    height: 34px;
+    width: 34px;
+    font-size: 22px;
+    color: #fff;
+    outline: none;
+    opacity: 1;
+    box-shadow: 0 0 0;
+    font-weight: normal;
+}
+
+#modal-quanlydiem .modal-footer {
+    padding: 12px 15px;
+}
+/* END MODAL */

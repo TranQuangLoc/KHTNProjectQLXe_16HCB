@@ -38,7 +38,8 @@
                                     <p><i class="fa fa-clock-o" aria-hidden="true"></i> Thời điểm: 07/01/2018 14:30:01</p>
                                     <p><i class="fa fa-map-o" aria-hidden="true"></i> Tọa độ: 106.110520, 10.1548151</p>
                                     <p><i class="fa fa-bandcamp" aria-hidden="true"></i> Tình trạng: Đang chờ xe</p>
-                                    <p><button class="btn btn-warning"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button> <button class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button></p>
+                                    <p><button class="btn btn-warning"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button> 
+                                    <button class="btn btn-info" data-toggle="modal" data-target="#modal-quanlydiem"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button></p>
                                 </td>
                             </tr>
                             <tr>
@@ -110,5 +111,32 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-quanlydiem" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Thông tin tài xế</h4>
+                </div>
+                <div class="modal-body">
+                    <p><label>Mã tài xế:</label> <span class="load-mataixe"></span></p>
+                    <p><label>Mã xe:</label> <span class="load-maxe"></span></p>
+                    <p><label>Họ tên:</label> <span class="load-hoten"></span></p>
+                    <p><label>Điện thoại:</label> <span class="load-dienthoai"></span></p>
+                    <p><label>Địa chỉ:</label> <span class="load-diachi"></span></p>
+                    <p><label>Loại xe:</label> <span class="load-loaixe"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>
