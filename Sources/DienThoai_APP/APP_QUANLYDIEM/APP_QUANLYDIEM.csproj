@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\icon-people.png" />
     <Content Include="Images\img-googlemap.jpg" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />

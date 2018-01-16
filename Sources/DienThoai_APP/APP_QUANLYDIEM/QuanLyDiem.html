@@ -28,8 +28,8 @@
                             <tr><td>Stt</td>
                             <td>Thông tin khách hàng</td></tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id="tb">
+                            <!--<tr>
                                 <td>STT:1</td>
                                 <td>
                                     <p><i class="fa fa-map-marker" aria-hidden="true"></i> 106/39 Bình Lợi, P. 13, Q.Bình Thạnh</p>
@@ -41,55 +41,8 @@
                                     <p><button class="btn btn-warning"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button> 
                                     <button class="btn btn-info" data-toggle="modal" data-target="#modal-quanlydiem"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button></p>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>STT:1</td>
-                                <td>
-                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> 106/39 Bình Lợi, P. 13, Q.Bình Thạnh</p>
-                                    <p><i class="fa fa-phone-square" aria-hidden="true"></i> 01662771773</p>
-                                    <p><i class="fa fa-bus" aria-hidden="true"></i> Loại xe: Thường</p>
-                                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> Thời điểm: 07/01/2018 14:30:01</p>
-                                    <p><i class="fa fa-map-o" aria-hidden="true"></i> Tọa độ: 106.110520, 10.1548151</p>
-                                    <p><i class="fa fa-bandcamp" aria-hidden="true"></i> Tình trạng: Chưa có xe</p>
-                                    <p><button class="btn btn-warning"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>STT:1</td>
-                                <td>
-                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> 106/39 Bình Lợi, P. 13, Q.Bình Thạnh</p>
-                                    <p><i class="fa fa-phone-square" aria-hidden="true"></i> 01662771773</p>
-                                    <p><i class="fa fa-bus" aria-hidden="true"></i> Loại xe: Thường</p>
-                                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> Thời điểm: 07/01/2018 14:30:01</p>
-                                    <p><i class="fa fa-map-o" aria-hidden="true"></i> Tọa độ: 106.110520, 10.1548151</p>
-                                    <p><i class="fa fa-bandcamp" aria-hidden="true"></i> Tình trạng: Đang chờ xe</p>
-                                    <p><button class="btn btn-warning"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button> <button class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>STT:1</td>
-                                <td>
-                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> 106/39 Bình Lợi, P. 13, Q.Bình Thạnh</p>
-                                    <p><i class="fa fa-phone-square" aria-hidden="true"></i> 01662771773</p>
-                                    <p><i class="fa fa-bus" aria-hidden="true"></i> Loại xe: Thường</p>
-                                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> Thời điểm: 07/01/2018 14:30:01</p>
-                                    <p><i class="fa fa-map-o" aria-hidden="true"></i> Tọa độ: 106.110520, 10.1548151</p>
-                                    <p><i class="fa fa-bandcamp" aria-hidden="true"></i> Tình trạng: Đang chờ xe</p>
-                                    <p><button class="btn btn-warning"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button> <button class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>STT:1</td>
-                                <td>
-                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> 106/39 Bình Lợi, P. 13, Q.Bình Thạnh</p>
-                                    <p><i class="fa fa-phone-square" aria-hidden="true"></i> 01662771773</p>
-                                    <p><i class="fa fa-bus" aria-hidden="true"></i> Loại xe: Thường</p>
-                                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> Thời điểm: 07/01/2018 14:30:01</p>
-                                    <p><i class="fa fa-map-o" aria-hidden="true"></i> Tọa độ: 106.110520, 10.1548151</p>
-                                    <p><i class="fa fa-bandcamp" aria-hidden="true"></i> Tình trạng: Đang chờ xe</p>
-                                    <p><button class="btn btn-warning"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button> <button class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button></p>
-                                </td>
-                            </tr>
+                            </tr>-->
+                            
                         </tbody>
                     </table>
                 </div>
@@ -139,15 +92,23 @@
         </div>
     </div>
 
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script>
-        var markers = [];
+        var firebase = new Firebase('https://khtnproject.firebaseio.com/');
 
+        var points = [];
+
+        var markers = [];
+        
+        // Clear marker
         function removeMarker() {
             for (var i = 0; i < markers.length; i++) {
                 markers[i].setMap(null);
                 markers.splice(0, 1);
             }
         }
+
+        // Load google map
         function initMap() {
             var temp_local = { lat: 10.811, lng: 106.709 };
             var map = new google.maps.Map(document.getElementById('map'), {
@@ -156,6 +117,8 @@
             });
 
             var geocoder = new google.maps.Geocoder();
+
+            loadDiem(map, geocoder);
 
             document.getElementById('search').addEventListener('click', function () {
                 removeMarker();
@@ -167,6 +130,7 @@
             });
         }
 
+        // Load vị trí trên google map
         function geocodeAddress(geocoder, map) {
             var address = document.getElementById('address').value;
             geocoder.geocode({ 'address': address },
@@ -209,6 +173,63 @@
 
                 }
             )
+        }
+
+        // Load danh sách tọa độ khách hàng
+        function loadDiem(map, geo) {
+            firebase.child("Diem").on("value", function (snapshot) {
+                var stt = 1;
+                var html = '';
+                var viewInfo = ``;
+
+                snapshot.forEach(function (snapchild) {
+
+                    var key = snapchild.key();
+                    var item = snapchild.val();
+                    var orig = JSON.parse(item.OriginGeo);
+
+                    var point = {
+                        item: item,
+                        key: key,
+                        map: map,
+                        geo: geo
+                    };
+
+                    points.push(point);
+
+
+                    if (item.TrangThai == "đã hoàn thành" || item.TrangThai == "đã nhận xe") {
+                        viewInfo = `<button class="btn btn-info" data-toggle="modal" data-target="#modal-quanlydiem"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button>`;
+                    } else {
+                        viewInfo = ``;
+                    }
+
+                    html += `
+                        <tr data-address="${item.DiaChi}" class="rows">
+                            <td align="center" class="align-middle">${stt}</td>
+                            <td>
+                                <p><i class="fa fa-map-marker" aria-hidden="true"></i> ${item.DiaChi}</p>
+                                <p><i class="fa fa-phone-square" aria-hidden="true"></i> ${item.SoDienThoai}</p>
+                                <p><i class="fa fa-bus" aria-hidden="true"></i> Loại xe: ${item.LoaiXe_Ten}</p>
+                                <p><i class="fa fa-clock-o" aria-hidden="true"></i> Thời điểm: ${item.NgayTao}</p>
+                                <p><i class="fa fa-map-o" aria-hidden="true"></i> Tọa độ: (${Number(item.Lat).toFixed(4)}, ${Number(item.Lng).toFixed(4)})</p>
+                                <p><i class="fa fa-bandcamp" aria-hidden="true"></i> Trạng thái: ${item.TrangThai}</p>
+                                <p><button class="btn btn-warning" onclick="GetStatus('${key}')"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button> ${viewInfo}</p>
+                            </td>
+                        </tr>
+                    `;
+
+
+                    stt++;
+
+                });
+                
+                $("#tb").html(html);
+            });
+        }
+
+        function GetStatus(data) {
+
         }
     </script>
     <script async defer
