@@ -3,9 +3,14 @@
     line-height: 1.5;
     height: 100%;
 }
-.main-title  {
-    font-size: 18px;
-    margin: 10px;
+.pd-0 {
+    padding: 0px !important;
+}
+.main-title {
+    font-size: 16px;
+    margin: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 #map img {
     width: 100%;
@@ -15,4 +20,23 @@
 .panel-body {
     height: 580px;
     overflow-y: scroll;
+}
+
+.panel-qld {
+    border: none !important;
+    
+}
+
+.panel.panel-default > .panel-heading {
+    background: green;
+    color: #fff;
+    border-radius: 0px;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.table thead tr {
+    color: green;
+    font-weight: bold;
+    text-transform: uppercase;
 }
