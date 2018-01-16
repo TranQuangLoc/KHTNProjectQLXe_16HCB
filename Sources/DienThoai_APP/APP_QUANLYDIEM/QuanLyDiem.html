@@ -107,7 +107,7 @@
                 </div>
             </div>
             <div id="map">
-                <img src="Images/img-googlemap.jpg" alt="Google map" />
+                
             </div>
         </div>
     </div>
@@ -137,6 +137,72 @@
 
         </div>
     </div>
+
+    <script>
+        function initMap() {
+            var temp_local = { lat: 10.811, lng: 106.709 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 9,
+                center: temp_local,
+                draggable: true,
+                animation: google.maps.Animation.DROP,
+                icon: 'Images/icon-people.png'
+            });
+
+            var geocoder = new google.maps.Geocoder();
+
+            document.getElementById('search').addEventListener('click', function () {
+                geocodeAddress(geocoder, map);
+            });
+        }
+
+        function geocodeAddress(geocoder, map) {
+            var address = document.getElementById('address').value;
+            geocoder.geocode({ 'address': address },
+                function (results, status) {
+                    if (status === 'OK') {
+                        if (markers.length > 0) return;
+                        map.setCenter(results[0].geometry.location);
+
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location,
+                            draggable: true,
+                            animation: google.maps.Animation.DROP,
+                            icon: 'Images/icon-people.png'
+                        })
+                        markers.push(marker);
+
+                        var infowindow = new google.maps.InfoWindow({
+                            content: 'Tọa độ (' + Number(results[0].geometry.location.lat()).toFixed(3) + ', ' +
+                            Number(results[0].geometry.location.lng()).toFixed(3) + ')'
+                        });
+
+                        infowindow.open(map, marker);
+                        google.maps.event.addListener(marker, 'drag', function (e) {
+
+                            infowindow.close();
+                            infowindow = new google.maps.InfoWindow({ content: 'Tọa độ (' + Number(e.latLng.lat()).toFixed(3) + ', ' + Number(e.latLng.lng()).toFixed(3) + ')' });
+
+                            infowindow.open(map, marker);
+                            removeMarkerShow();
+
+                        });
+
+                        google.maps.event.addListener(marker, 'dragend', function (e) {
+                        });
+
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+
+                }
+            )
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo&callback=initMap">
+    </script>
 
 </body>
 </html>
