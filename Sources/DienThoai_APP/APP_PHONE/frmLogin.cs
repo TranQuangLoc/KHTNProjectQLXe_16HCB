@@ -27,8 +27,34 @@ namespace APP_PHONE
         {
             try
             {
+                string username = txtUsername.Text;
+                string password = txtPassword.Text;
 
-                MessageBox.Show("Lay data Login");
+                if(string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                {
+                    MessageBox.Show("Error !");
+                    return;
+                }
+                else
+                {
+                    var app = FB_Helpers.GetFireBase();
+                    var ls = await app.Child("NhanVien/NhanVienTongDai").OnceAsync<NhanVien>();
+
+                    var user = ls.Where(n => n.Object.username.Equals(username) && n.Object.password.Equals(password)).FirstOrDefault();
+
+                    if (user == null)
+                    {
+                        MessageBox.Show("Not Exists !");
+                    }
+                    else
+                    {
+                        DataUserLogin.nhanvien = user.Object;
+                        frmControl frm = new frmControl();
+                        frm.Show();
+                        this.Hide();
+                    }
+                }
+
             }
             catch (Exception ex)
             {
