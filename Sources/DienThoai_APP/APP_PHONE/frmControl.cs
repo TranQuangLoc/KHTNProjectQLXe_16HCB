@@ -81,7 +81,10 @@ namespace APP_PHONE
 
         private async void btnGhiNhan_Click(object sender, EventArgs e)
         {
-            string sdt = txtSDT.Text;
+            try
+            {
+               
+                string sdt = txtSDT.Text;
                 string dchi = txtDiaChi.Text + ", " + cboQuanHuyen.Text + ", " + cboTinhThanh.Text;
                 int id = int.Parse(cboLoaiXe.SelectedValue.ToString());
                 string ten = cboLoaiXe.Text;
@@ -125,6 +128,11 @@ namespace APP_PHONE
                 {
                     MessageBox.Show("Không thể ghi nhận được thông tin, vui lòng kiểm tra lại", "Thông báo");
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gặp vấn đề khi gọi đến service. Vui lòng kiểm tra lại", "Thông báo");
+            }
         }
 
         private async void txtSDT_Leave(object sender, EventArgs e)
