@@ -112,6 +112,7 @@
 
         // Load google map
         function initMap() {
+            
             var temp_local = { lat: 10.811, lng: 106.709 };
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 9,
@@ -124,7 +125,6 @@
             
             document.getElementById('search').addEventListener('click', function () {
                 removeMarker();
-                //TEST LAY 2 DIEM
                 geocodeAddress(geocoder, map);
             });
 
@@ -180,6 +180,7 @@
 
         // Load danh sách tọa độ khách hàng
         function loadDiem(map, geo) {
+
             firebase.child("Diem").on("value", function (snapshot) {
                 var stt = 1;
                 var html = '';
@@ -231,16 +232,22 @@
         }
 
         function GetStatus(data) {
+            
+            var itemTemp;
+
             firebase.child("YeuCau").on("value", function (snapshot) {
                 snapshot.forEach(function (snapchild) {
                     var item = snapchild.val();
                     item.id = snapchild.key();
 
-                    var html = '<input type="hidden" value="' + item.idXe + '" id="maxe" />';
+                    if (item.idDiem === data && item.trangthai == "OK") {
+                        itemTemp = item;
+                    }
 
-                    if (item.idDiem === data) {
+                    //var html = '<input type="hidden" value="' + item.idXe + '" id="maxe" />';
+
+                    /*if (item.idDiem === data && item.trangthai == "OK") {
                         
-
                         var dc = JSON.parse(item.diachi);
                         ShowMarker(dc);
 
@@ -274,9 +281,57 @@
                         });
                     } else {
                         $("#search").trigger("click");
-                    }
+                    }*/
                 });
             });
+            
+            if (typeof itemTemp === "undefined") {
+                //load dia diem len thanh search
+                $('body').on('click', 'tbody#tb tr', function () {
+                    $("tbody#tb tr").removeClass("background-active");
+                    $(this).addClass("background-active");
+                    var data = $(this).attr("data-address");
+                    $("#address").attr('value', data);
+                });
+
+                setTimeout(function () {
+                    $("#search").trigger("click");
+                }, 500);
+
+                
+            } else {
+                var dc = JSON.parse(itemTemp.diachi);
+                ShowMarker(dc);
+
+                firebase.child("Xe").once("value", function (snapshot) {
+                    snapshot.forEach(function (child) {
+                        var e = child.val();
+                        e.id = child.key();
+                        if (e.id === itemTemp.idXe) {
+                            var pointXe = {
+                                lat: dc.lat,
+                                lng: dc.lng
+                                //lat: 10.7661,
+                                //lng: 106.6395
+                            }
+
+                            var pointKhach = {
+                                lat: e.lat,
+                                lng: e.lng
+                            }
+
+                            var markerKH = new google.maps.Marker({
+                                position: pointKhach,
+                                map: map,
+                                range: 0,
+                                icon: "Images/icon-taxi.png",
+                            });
+
+                            displayRoute(pointKhach, pointXe);
+                        }
+                    })
+                });
+            }
         }
 
         //Ve duong di
@@ -307,8 +362,7 @@
                 }
             });
         }
-
-        //
+        
         function ShowMarker(obj) {
             var p = new google.maps.LatLng(obj.lat, obj.lng);
             map = new google.maps.Map(document.getElementById('map'), {
@@ -322,9 +376,11 @@
                 position: { lat: obj.lat, lng: obj.lng },
                 map: map,
                 range: 0,
-                icon: "Images/icon-taxi.png"
+                icon: "Images/icon-people.png"
             });
-        }        
+        }       
+
+        
     </script>
 
     
