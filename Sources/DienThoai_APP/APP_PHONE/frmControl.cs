@@ -137,7 +137,17 @@ namespace APP_PHONE
 
         private async void txtSDT_Leave(object sender, EventArgs e)
         {
-            
+            if (txtSDT.Text == "")
+            {
+                return;
+            }
+
+            var app = FB_Helpers.GetFireBase();
+            var list = await app.Child("Diem").OnceAsync<Diem>();
+
+            var lst = list.Select(n => n.Object).ToList();
+
+            grvHist.DataSource = lst;
             
         }
         
