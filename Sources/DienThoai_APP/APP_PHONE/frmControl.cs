@@ -81,15 +81,50 @@ namespace APP_PHONE
 
         private async void btnGhiNhan_Click(object sender, EventArgs e)
         {
-            try
-            {
+            string sdt = txtSDT.Text;
+                string dchi = txtDiaChi.Text + ", " + cboQuanHuyen.Text + ", " + cboTinhThanh.Text;
+                int id = int.Parse(cboLoaiXe.SelectedValue.ToString());
+                string ten = cboLoaiXe.Text;
 
-                MessageBox.Show("Insert thong tin xuong data");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Gặp vấn đề khi gọi đến service. Vui lòng kiểm tra lại", "Thông báo");
-            }
+                var res = new
+                {
+                    SoDienThoai = sdt,
+                    DiaChi = dchi,
+                    LoaiXe = id,
+                    LoaiXe_Ten = ten,
+                    NgayTao = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
+                    TrangThai = "waiting",                  
+                    Lat = 0,
+                    Lng = 0,
+                    OriginGeo = JsonConvert.SerializeObject(new
+                        {
+                            lat = 0,
+                            lng = 0,
+                            diachi = dchi
+                        }
+                    )
+                };
+
+                var app = FB_Helpers.GetFireBase();
+                var new_nv = await app.Child("Diem").PostAsync(JsonConvert.SerializeObject(res));
+
+               
+              
+                if (new_nv != null && !string.IsNullOrEmpty(new_nv.Key))
+                {
+                    MessageBox.Show("Đã ghi nhận thông tin, Id " + new_nv.Key, "Thông báo");
+
+                   // var app = FB_Helpers.GetFireBase();
+                    var list = await app.Child("Diem").OnceAsync<Diem>();
+
+                    var lst = list.Select(n => n.Object).ToList();
+
+                    grvHist.DataSource = lst;
+                }
+                else
+                {
+                    MessageBox.Show("Không thể ghi nhận được thông tin, vui lòng kiểm tra lại", "Thông báo");
+                }
         }
 
         private async void txtSDT_Leave(object sender, EventArgs e)
