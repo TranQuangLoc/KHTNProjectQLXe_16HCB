@@ -64,7 +64,10 @@ namespace APP_PHONE
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            
+            var app = FB_Helpers.GetFireBase();
+            var observable = app.Child("NhanVien")
+              .AsObservable<NhanVien>()
+              .Subscribe(d => ChangeFunction(d));
         }
 
         private void ChangeFunction(Firebase.Database.Streaming.FirebaseEvent<NhanVien> fb)
