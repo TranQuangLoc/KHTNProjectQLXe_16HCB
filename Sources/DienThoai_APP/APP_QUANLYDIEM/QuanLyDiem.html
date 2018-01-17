@@ -42,7 +42,6 @@
                                     <button class="btn btn-info" data-toggle="modal" data-target="#modal-quanlydiem"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button></p>
                                 </td>
                             </tr>-->
-                            
                         </tbody>
                     </table>
                 </div>
@@ -287,18 +286,27 @@
             
             if (typeof itemTemp === "undefined") {
                 //load dia diem len thanh search
+                
                 $('body').on('click', 'tbody#tb tr', function () {
                     $("tbody#tb tr").removeClass("background-active");
                     $(this).addClass("background-active");
                     var data = $(this).attr("data-address");
                     $("#address").attr('value', data);
                 });
-
-                setTimeout(function () {
-                    $("#search").trigger("click");
-                }, 500);
-
                 
+                setTimeout(function () {
+                    var temp_local = { lat: 0, lng: 0 };
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 9,
+                        center: temp_local
+                    });
+                    
+                    var geocoder = new google.maps.Geocoder();
+
+                    removeMarker();
+                    geocodeAddress(geocoder, map);
+                    //$("#search").trigger("click");
+                }, 500);
             } else {
                 var dc = JSON.parse(itemTemp.diachi);
                 ShowMarker(dc);
