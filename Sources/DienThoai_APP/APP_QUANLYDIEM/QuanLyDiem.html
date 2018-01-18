@@ -432,6 +432,63 @@
             });
         }
 
+        function GetStatus(data, dataTT) {
+                var itemTemp;
+                if (dataTT != "Đang chờ xe") {
+                    setTimeout(function () {
+                        reloadMapDelay();
+                    }, 500);
+                } else {
+                    firebase.child("YeuCau").on("value", function (snapshot) {
+                        snapshot.forEach(function (snapchild) {
+                            var item = snapchild.val();
+                            item.id = snapchild.key();
+
+                            if (item.idDiem === data && item.trangthai === "OK") {
+                                itemTemp = item;
+                            }
+                        });
+                    });
+
+                    if (typeof itemTemp === "undefined") {
+                        setTimeout(function () {
+                            reloadMapDelay();
+                        }, 500);
+                    } else {
+                        var dc = JSON.parse(itemTemp.diachi);
+                        ShowMarker(dc);
+
+                        firebase.child("Xe").once("value", function (snapshot) {
+                            snapshot.forEach(function (child) {
+                                var e = child.val();
+                                e.id = child.key();
+                                if (e.id === itemTemp.idXe) {
+                                    var pointXe = {
+                                        lat: dc.lat,
+                                        lng: dc.lng
+                                        //lat: 10.7661,
+                                        //lng: 106.6395
+                                    }
+
+                                    var pointKhach = {
+                                        lat: e.lat,
+                                        lng: e.lng
+                                    }
+
+                                    var markerKH = new google.maps.Marker({
+                                        position: pointKhach,
+                                        map: map,
+                                        range: 0,
+                                        icon: "Images/icon-taxi.png",
+                                    });
+
+                                    displayRoute(pointKhach, pointXe);
+                                }
+                            })
+                        });
+                    }
+                }
+            }
 
     </script>
 
