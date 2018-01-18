@@ -25,8 +25,10 @@
                 <div class="panel-body pd-0">
                     <table class="table table-hover">
                         <thead>
-                            <tr><td>Stt</td>
-                            <td>Thông tin khách hàng</td></tr>
+                            <tr>
+                                <td>Stt</td>
+                                <td>Thông tin khách hàng</td>
+                            </tr>
                         </thead>
                         <tbody id="tb">
                             <!--<tr>
@@ -38,7 +40,7 @@
                                     <p><i class="fa fa-clock-o" aria-hidden="true"></i> Thời điểm: 07/01/2018 14:30:01</p>
                                     <p><i class="fa fa-map-o" aria-hidden="true"></i> Tọa độ: 106.110520, 10.1548151</p>
                                     <p><i class="fa fa-bandcamp" aria-hidden="true"></i> Tình trạng: Đang chờ xe</p>
-                                    <p><button class="btn btn-warning"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button> 
+                                    <p><button class="btn btn-warning"><i class="fa fa-map-marker" aria-hidden="true"></i> Xem vị trí</button>
                                     <button class="btn btn-info" data-toggle="modal" data-target="#modal-quanlydiem"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button></p>
                                 </td>
                             </tr>-->
@@ -60,7 +62,7 @@
                 </div>
             </div>
             <div id="map">
-                
+
             </div>
         </div>
     </div>
@@ -100,7 +102,7 @@
         var markers = [];
 
         var map = {};
-        
+
         // Clear marker
         function removeMarker() {
             for (var i = 0; i < markers.length; i++) {
@@ -111,7 +113,7 @@
 
         // Load google map
         function initMap() {
-            
+
             var temp_local = { lat: 10.811, lng: 106.709 };
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 9,
@@ -121,17 +123,18 @@
             var geocoder = new google.maps.Geocoder();
 
             loadDiem(map, geocoder);
-            
+
             document.getElementById('search').addEventListener('click', function () {
-                removeMarker();
-                geocodeAddress(geocoder, map);
+                //removeMarker();
+                //geocodeAddress(geocoder, map);
+                reloadMapDelay();
             });
 
             document.getElementById('clear-marker').addEventListener('click', function () {
                 removeMarker();
             });
         }
-        
+
         // Load vị trí trên google map
         function geocodeAddress(geocoder, map) {
             var address = document.getElementById('address').value;
@@ -177,13 +180,31 @@
             )
         }
 
+        //
+
+        function checkTrangThai(id) {
+            var result = '';
+            firebase.child("YeuCau/" + id).on("value", function (snapshot) {
+                var trangthai = snapshot.val();
+                alert(trangthai);
+                if (trangthai === "OK") {
+                    result = 'say yes';
+                }
+                else {
+                    result = 'say no';
+                }
+            });
+            return result;
+        }
+
+
+
         // Load danh sách tọa độ khách hàng
         function loadDiem(map, geo) {
-
             firebase.child("Diem").on("value", function (snapshot) {
                 var stt = 1;
                 var html = '';
-                var viewInfo = ``;
+                var viewInfo = '';
 
                 snapshot.forEach(function (snapchild) {
 
@@ -200,12 +221,30 @@
 
                     points.push(point);
 
+                    //viewInfo = `<button class="btn btn-info" data-toggle="modal" data-target="#modal-quanlydiem"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button>`;
 
-                    if (item.TrangThai == "đã hoàn thành" || item.TrangThai == "đã nhận xe") {
+                    if (item.TrangThai == "Đang chờ xe") {
+                        firebase.child("YeuCau").on("value", function (snapshotYC) {
+                            snapshotYC.forEach(function (snapchildYC) {
+                                var keyYC = snapchildYC.key();
+                                var itemYC = snapchildYC.val();
+                                if (itemYC.trangthai === "OK" && itemYC.idDiem === key) {
+                                    viewInfo = `<button class="btn btn-info" data-toggle="modal" data-target="#modal-quanlydiem"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button>`;
+                                    console.log("--Trong vong lap--" + viewInfo);
+                                }
+                            })
+                            //console.log("--Trong vong lap--" + viewInfo);
+                        });
+                        console.log("--Ngoài vong lap--" + viewInfo);
+                    }
+
+                    //console.log(viewInfo);
+
+                    /*if (item.TrangThai == "đã hoàn thành" || item.TrangThai == "đã nhận xe") {
                         viewInfo = `<button class="btn btn-info" data-toggle="modal" data-target="#modal-quanlydiem"><i class="fa fa-info-circle" aria-hidden="true"></i> Thông tin tài xế</button>`;
                     } else {
                         viewInfo = ``;
-                    }
+                    }*/
 
                     html += `
                         <tr data-address="${item.DiaChi}" class="rows">
@@ -225,13 +264,21 @@
                     stt++;
 
                 });
-                
+
                 $("#tb").html(html);
             });
         }
 
+        //load dia diem len thanh search
+        $('body').on('click', 'tbody#tb tr', function () {
+            $("tbody#tb tr").removeClass("background-active");
+            $(this).addClass("background-active");
+            var data = $(this).attr("data-address");
+            $("#address").attr('value', data);
+        });
+
         function GetStatus(data) {
-            
+
             var itemTemp;
 
             firebase.child("YeuCau").on("value", function (snapshot) {
@@ -239,14 +286,14 @@
                     var item = snapchild.val();
                     item.id = snapchild.key();
 
-                    if (item.idDiem === data && item.trangthai == "OK") {
+                    if (item.idDiem === data && item.trangthai === "OK") {
                         itemTemp = item;
                     }
 
                     //var html = '<input type="hidden" value="' + item.idXe + '" id="maxe" />';
 
                     /*if (item.idDiem === data && item.trangthai == "OK") {
-                        
+
                         var dc = JSON.parse(item.diachi);
                         ShowMarker(dc);
 
@@ -283,29 +330,10 @@
                     }*/
                 });
             });
-            
-            if (typeof itemTemp === "undefined") {
-                //load dia diem len thanh search
-                
-                $('body').on('click', 'tbody#tb tr', function () {
-                    $("tbody#tb tr").removeClass("background-active");
-                    $(this).addClass("background-active");
-                    var data = $(this).attr("data-address");
-                    $("#address").attr('value', data);
-                });
-                
-                setTimeout(function () {
-                    var temp_local = { lat: 0, lng: 0 };
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 9,
-                        center: temp_local
-                    });
-                    
-                    var geocoder = new google.maps.Geocoder();
 
-                    removeMarker();
-                    geocodeAddress(geocoder, map);
-                    //$("#search").trigger("click");
+            if (typeof itemTemp === "undefined") {
+                setTimeout(function () {
+                    reloadMapDelay();
                 }, 500);
             } else {
                 var dc = JSON.parse(itemTemp.diachi);
@@ -328,6 +356,9 @@
                                 lng: e.lng
                             }
 
+                            console.log(pointXe);
+                            console.log(pointKhach);
+
                             var markerKH = new google.maps.Marker({
                                 position: pointKhach,
                                 map: map,
@@ -340,6 +371,19 @@
                     })
                 });
             }
+        }
+
+        function reloadMapDelay() {
+            var temp_local = { lat: 0, lng: 0 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 9,
+                center: temp_local
+            });
+
+            var geocoder = new google.maps.Geocoder();
+
+            removeMarker();
+            geocodeAddress(geocoder, map);
         }
 
         //Ve duong di
@@ -370,7 +414,7 @@
                 }
             });
         }
-        
+
         function ShowMarker(obj) {
             var p = new google.maps.LatLng(obj.lat, obj.lng);
             map = new google.maps.Map(document.getElementById('map'), {
@@ -386,12 +430,12 @@
                 range: 0,
                 icon: "Images/icon-people.png"
             });
-        }       
+        }
 
-        
+
     </script>
 
-    
+
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo&callback=initMap">
     </script>
