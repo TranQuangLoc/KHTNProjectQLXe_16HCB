@@ -75,7 +75,7 @@
                 zoom: 9,
                 center: tohienthanh
             });
-       
+
 			var geocoder = new google.maps.Geocoder();
 
             loadDiem(map, geocoder);
@@ -118,14 +118,19 @@
                         </tr>
                             `;
                     stt++;
-                    
-                   
+
+
                 })
 
                 $("#tb").html(html);
             });
-        }    
-        
+        }
+        <!-- Fix kích thước màn hình -->
+        $(function () {
+            var hei = $(window).height();
+            $("#map").css("height", hei);
+            $(".forMap").css("height", hei - $(".panel-heading").height());
+         })
 		//load data search input
         $('body').on('click', 'tbody#tb tr', function () {
             $("tbody#tb tr").removeClass("background-active");
@@ -139,14 +144,14 @@
             var pt = points.filter(p => p.key === id);
 
             if (pt[0]) {
-                
+
                 //console.log(pt);
                 var point = pt[0];
                 var geocoder = point.geo;
                 var address = JSON.parse(point.item.OriginGeo).diachi;
                 var map = point.map;
                 idDiemCurrent = point.key;
-                
+
                 geocoder.geocode({ 'address': address },
                     function (results, status) {
                         if (status === 'OK') {
@@ -189,7 +194,7 @@
                             google.maps.event.addListener(marker, 'dragend', function (e) {
 
                                 ReverserGeoCode(geocoder,map,this);
-                                
+
                                 LoadCacXe(point.loaixe_id).done(function () {
                                     UpdateKhoangCach(marker);
                                     ShowTop10Nearest(map);
@@ -204,7 +209,7 @@
                 )
             }
         }
-		
+
 		//GEO tren nut tim kiem
 		function geocodeAddress(geocoder, map) {
             var address = document.getElementById('address').value;
@@ -260,7 +265,7 @@
                 }
             )
         }
-		
+
 		//Keo DIEM
         function ReverserGeoCode(geocoder, map, marker) {
             var point = points.filter(n => n.id === marker.point_id);
@@ -280,10 +285,10 @@
                 });
             }
 
-            
+
         }
 
-		
+
         function removeMarker() {
             for (var i = 0; i < markers.length; i++) {
                 markers[i].setMap(null);
@@ -291,7 +296,7 @@
             }
 
             for (var i = 0; i < markers_xe.length; i++) {
-                markers_xe[i].setMap(null);               
+                markers_xe[i].setMap(null);
             }
             markers_xe.splice(0, markers_xe.length);
             removeMarkerShow();
@@ -318,7 +323,7 @@
             };
 
             directionsService.route(request, function (response, status) {
-                if (status == google.maps.DirectionsStatus.OK) {                
+                if (status == google.maps.DirectionsStatus.OK) {
                     callback(response.routes[0].legs[0].distance.value, index);
                 }
             });
@@ -333,7 +338,7 @@
             var lat2 = location2.lat();
             var lon2 = location2.lng();
 
-            var R = 3958.7558657440545; // Radius of earth in Miles 
+            var R = 3958.7558657440545; // Radius of earth in Miles
             var dLat = toRad(lat2 - lat1);
             var dLon = toRad(lon2 - lon1);
             var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
@@ -357,9 +362,9 @@
                 DiaChi: diachi
             }
 
-            firebase.child("Diem/" + id).update(data);        
+            firebase.child("Diem/" + id).update(data);
         }
-		
+
 		function UpdateToaDo_Origin(id, x, y, diachi) {
 
             var origin = {
@@ -376,7 +381,7 @@
 
             firebase.child("Diem/" + id).update(data);
         }
-		
+
 		function LoadCacXe(loaixe_ten)
         {
             var k = $.Deferred();
@@ -399,10 +404,10 @@
                             id_xe: key,
                             ten_xe: item.tenXe
                         });
-                    
-                        markers_xe.push(marker_x); 
+
+                        markers_xe.push(marker_x);
                     }
-                    
+
                 })
 
                 k.resolve();
@@ -410,7 +415,7 @@
 
             return k.promise();
         }
-		
+
 		function UpdateKhoangCach(marker)
         {
             list_markers_show.splice(0, list_markers_show.length);
@@ -429,13 +434,13 @@
             list_markers_show.sort(function(a,b) {
                 return a.range - b.range;
             } )
-            
+
             for(i = 0; i < list_markers_show.length;i++)
             {
                 console.log(list_markers_show[i].range);
             }
         }
-		
+
 		function ShowTop10Nearest(map)
         {
             var top10 = list_markers_show.length > 10 ? 10 : list_markers_show.length;
@@ -443,7 +448,7 @@
             {
                 list_markers_show[i].setMap(map);
 
-                
+
                 var info = 'Xe: ' + list_markers_show[i].ten_xe;
                 var infowindow = new google.maps.InfoWindow({
                     content: info
@@ -452,7 +457,7 @@
                 infowindow.open(map, list_markers_show[i]);
             }
         }
-		
+
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbPvYyFa-05eRetkasS2cUKuPcaZp9Qeo&callback=initMap">

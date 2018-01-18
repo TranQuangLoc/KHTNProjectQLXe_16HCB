@@ -86,7 +86,20 @@
             GetInfoUser();
 
         }
+        $(function () {
+            var hei = $(window).height();
+            $("#map, .taixe-left").css("height", hei);
 
+            $(".icon-xoay").click(function () {
+                if ($(this).hasClass("active")) {
+                    $(this).removeClass("active");
+                    $(".taixe-left, .taixe-right").removeClass("active");
+                } else {
+                    $(this).addClass("active");
+                    $(".taixe-left, .taixe-right").addClass("active");
+                }
+            })
+        })
 
         $("#btnStart").click(function () {
             var idXe = $("#maxe").val();
@@ -177,7 +190,7 @@
                         <p class="pull-left"><button type="button" id="btnStart" class="btn btn-success btn-main"><i class="fa fa-play" aria-hidden="true"></i></button> Bắt Đầu</p>
                         <p class="pull-left"><button type="button" id="btnEnd" class="btn btn-danger btn-main"><i class="fa fa-stop-circle-o" aria-hidden="true"></i></button> Kết Thúc</p>
                     </div>
-                    
+
                     <!--
                     <p><b>Mã nhân viên</b>: ${obj.id}</p>
                     <p><b>Tên nhân viên</b>: ${obj.tennv}</p>

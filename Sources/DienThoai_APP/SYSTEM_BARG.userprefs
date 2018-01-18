@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{B92AD5EC-F56C-4AD2-A3C2-DA7BDCD95F91}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="APP_TAIXE/Login.html">
+    <Files>
+      <File FileName="APP_QUANLYDIEM/QuanLyDiem.html" Line="1" Column="1" />
+      <File FileName="APP_DINHVI/Map.html" Line="133" Column="12" />
+      <File FileName="APP_TAIXE/Login.html" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
