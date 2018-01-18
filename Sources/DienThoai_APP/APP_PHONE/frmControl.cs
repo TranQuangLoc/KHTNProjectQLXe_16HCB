@@ -145,7 +145,7 @@ namespace APP_PHONE
             var app = FB_Helpers.GetFireBase();
             var list = await app.Child("Diem").OnceAsync<Diem>();
 
-            var lst = list.Select(n => n.Object).ToList();
+            var lst = list.Select(n => n.Object).Where(n => n.SoDienThoai == txtSDT.Text).ToList();
 
             grvHist.DataSource = lst;
             

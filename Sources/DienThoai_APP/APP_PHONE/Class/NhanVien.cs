@@ -20,5 +20,6 @@ namespace APP_PHONE.Class
         public string NgayTao { get; set; }
         public string TrangThai { get; set; }
         public string DiaChi { get; set; }
+        public string SoDienThoai { get; set; }
     }
 }
