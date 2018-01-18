@@ -70,7 +70,6 @@
     <!-- Modal -->
     <div class="modal fade" id="modal-quanlydiem" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -80,16 +79,13 @@
                 <div class="modal-body">
                     <p><label>Mã tài xế:</label> <span class="load-mataixe"></span></p>
                     <p><label>Mã xe:</label> <span class="load-maxe"></span></p>
-                    <p><label>Họ tên:</label> <span class="load-hoten"></span></p>
-                    <p><label>Điện thoại:</label> <span class="load-dienthoai"></span></p>
-                    <p><label>Địa chỉ:</label> <span class="load-diachi"></span></p>
                     <p><label>Loại xe:</label> <span class="load-loaixe"></span></p>
+                    <p><label>Họ tên:</label> <span class="load-hoten"></span></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -433,62 +429,116 @@
         }
 
         function GetStatus(data, dataTT) {
-                var itemTemp;
-                if (dataTT != "Đang chờ xe") {
+            
+            var itemTemp;
+            if (dataTT != "Đang chờ xe") {
+                setTimeout(function () {
+                    reloadMapDelay();
+                }, 500);
+            } else {
+                firebase.child("YeuCau").on("value", function (snapshot) {
+                    snapshot.forEach(function (snapchild) {
+                        var item = snapchild.val();
+                        item.id = snapchild.key();
+
+                        if (item.idDiem === data && item.trangthai === "OK") {
+                            itemTemp = item;
+                        }
+                    });
+                });
+
+                if (typeof itemTemp === "undefined") {
                     setTimeout(function () {
                         reloadMapDelay();
                     }, 500);
                 } else {
-                    firebase.child("YeuCau").on("value", function (snapshot) {
-                        snapshot.forEach(function (snapchild) {
-                            var item = snapchild.val();
-                            item.id = snapchild.key();
+                    var dc = JSON.parse(itemTemp.diachi);
+                    ShowMarker(dc);
 
-                            if (item.idDiem === data && item.trangthai === "OK") {
-                                itemTemp = item;
+                    firebase.child("Xe").once("value", function (snapshot) {
+                        snapshot.forEach(function (child) {
+                            var e = child.val();
+                            e.id = child.key();
+                            if (e.id === itemTemp.idXe) {
+                                var pointXe = {
+                                    lat: dc.lat,
+                                    lng: dc.lng
+                                    //lat: 10.7661,
+                                    //lng: 106.6395
+                                }
+
+                                var pointKhach = {
+                                    lat: e.lat,
+                                    lng: e.lng
+                                }
+
+                                var markerKH = new google.maps.Marker({
+                                    position: pointKhach,
+                                    map: map,
+                                    range: 0,
+                                    icon: "Images/icon-taxi.png",
+                                });
+
+                                displayRoute(pointKhach, pointXe);
                             }
-                        });
+                        })
                     });
+                }
+            }
+        }
 
-                    if (typeof itemTemp === "undefined") {
-                        setTimeout(function () {
-                            reloadMapDelay();
-                        }, 500);
-                    } else {
-                        var dc = JSON.parse(itemTemp.diachi);
-                        ShowMarker(dc);
 
+        function formatInfoTaxi() {
+            $(".load-mataixe").html("");
+            $(".load-maxe").html("");
+            $(".load-loaixe").html("");
+            $(".load-hoten").html("");
+        }
+
+
+
+        function getInfoTaxi(data) {
+            var itemTemp;
+
+            firebase.child("YeuCau").on("value", function (snapshot) {
+                snapshot.forEach(function (snapchild) {
+                    var item = snapchild.val();
+                    item.id = snapchild.key();
+
+                    if (item.idDiem === data && item.trangthai != "Deny") {
                         firebase.child("Xe").once("value", function (snapshot) {
                             snapshot.forEach(function (child) {
-                                var e = child.val();
-                                e.id = child.key();
-                                if (e.id === itemTemp.idXe) {
-                                    var pointXe = {
-                                        lat: dc.lat,
-                                        lng: dc.lng
-                                        //lat: 10.7661,
-                                        //lng: 106.6395
-                                    }
+                                var xe = child.val();
+                                xe.id = child.key();
 
-                                    var pointKhach = {
-                                        lat: e.lat,
-                                        lng: e.lng
-                                    }
-
-                                    var markerKH = new google.maps.Marker({
-                                        position: pointKhach,
-                                        map: map,
-                                        range: 0,
-                                        icon: "Images/icon-taxi.png",
+                                if (xe.id === item.idXe) {
+                                    firebase.child("NhanVien/NhanVienLaiXe").once("value", function (snapshot) {
+                                        snapshot.forEach(function (child) {
+                                            var nv = child.val();
+                                            nv.id = child.key();
+                                            console.log(xe);
+                                            if (nv.id === xe.maNV) {
+                                                $(".load-mataixe").html(nv.id);
+                                                $(".load-maxe").html(xe.tenXe);
+                                                $(".load-loaixe").html(xe.loaiXe);
+                                                $(".load-hoten").html(nv.tennv);
+                                            }
+                                        })
                                     });
-
-                                    displayRoute(pointKhach, pointXe);
+                                } else {
+                                    formatInfoTaxi();
                                 }
                             })
                         });
+                    } else {
+                        formatInfoTaxi();
                     }
-                }
-            }
+                });
+            });
+
+            //console.log(itemTemp);
+        }
+
 
     </script>
 
