@@ -1,0 +1,167 @@
+﻿body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Roboto";
+    font-weight: 400;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#map {
+    height: 620px;
+    width: 100%;
+}
+
+.layout-boxed {
+    background: url(../../Images/boxed-bg.jpg) repeat fixed;
+}
+
+#login {
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+    width: 400px;
+    margin: 0 auto;
+    height: 269px;
+    margin-top: 150px;
+    margin-bottom: 2%;
+    -webkit-transition: opacity 1s;
+    padding-top: 0;
+    padding-bottom: 10%;
+}
+
+    #login form {
+        background: #ececec;
+        padding: 6% 4%;
+        width: 400px;
+        margin: 0 auto;
+        height: 269px;
+        margin-top: 150px;
+        margin-bottom: 2%;
+        transition: opacity 1s;
+        -webkit-transition: opacity 1s;
+        padding-top: 0;
+        padding-bottom: 10%;
+    }
+
+        #login form h3 {
+            padding: 20px 0;
+            font-size: 140%;
+            font-weight: 300;
+            text-align: center;
+            color: #fff;
+            /* font-weight: bold; */
+            font-style: normal !important;
+            font-size: 24px;
+            color: #777;
+            margin-top: 0;
+            text-transform: uppercase;
+        }
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    background: #fff;
+    margin-bottom: 4%;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    font-size: 21px;
+    height: 42px;
+    border-radius: 0px;
+}
+
+#login form button {
+    width: 50%;
+    background: #63E0D6 !important;
+    border: thin solid rgba(0,0,0,.1);
+    padding: 10px;
+    font-family: 'Open Sans',sans-serif;
+    color: #fff;
+    cursor: pointer;
+    transition: background .3s;
+    -webkit-transition: background .3s;
+    font-size: 17px;
+    margin: auto;
+    text-transform: uppercase;
+    margin-left: 25%;
+    outline: none;
+    box-shadow: 0 0 0 0;
+}
+
+    #login form button:hover {
+        background: #00b4a5 !important;
+    }
+
+/* CSS HOME */
+.taixe-left {
+    width: 300px;
+    height: 620px;
+    background: #fff;
+    position: relative;
+    transition: 0.3s all ease;
+}
+
+.taixe-right {
+    transition: 0.3s all ease;
+    width: calc(100% - 300px);
+}
+
+.taixe-left.active {
+    width: 0px;
+}
+
+.taixe-right.active {
+    width: 100%;
+}
+
+.taixe-left .icon-xoay {
+    position: absolute;
+    top: 37px;
+    left: 100%;
+    width: 34px;
+    height: 34px;
+    background: #d43f3a;
+    z-index: 9;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    line-height: 33px;
+    cursor: pointer;
+    transition: 0.5s all ease;
+}
+
+.taixe-left .icon-xoay.active {
+    transform: rotate(-90deg);
+}
+
+.main-title {
+        font-family: Arial;
+        font-size: 16px;
+        background: #5cb85c;
+        color: #fff;
+        margin: 0 auto;
+        text-transform: uppercase;
+        padding: 10px 7px;
+        font-weight: bold;
+    }
+
+.taixe-content {
+    padding: 10px;
+}
+
+.box-main-button p:first-child {
+    margin-right: 15px;
+}
+
+.btn-main {
+    padding: 3px;
+    width: 27px;
+    height: 27px;
+    border-radius: 0px;
+}
+
+#lat, #lng {
+    font-weight: normal;
+}
+
+
+/* END CSS HOME*/
